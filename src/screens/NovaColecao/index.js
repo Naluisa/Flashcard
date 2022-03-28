@@ -22,6 +22,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {auth} from '../../services/config';
 
 export default () => {
+  
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');

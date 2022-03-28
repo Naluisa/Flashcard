@@ -25,15 +25,33 @@ const styles = StyleSheet.create({
   buttonImageIconStyle: {
     padding: 10,
     margin: 5,
-    height: 50,
-    width: 50,
+    height: 70,
+    width: 70,
+    resizeMode: 'stretch',
+  },
+  buttonEdit: {
+    padding: 10,
+    margin: 5,
+    height: 30,
+    width: 30,
+    marginLeft: 60,
+    marginTop: -5,
+    resizeMode: 'stretch',
+  },
+  buttonExclui: {
+    padding: 10,
+    margin: 5,
+    height: 26,
+    width: 26,
+    marginLeft: 60,
+    marginTop: 20,
     resizeMode: 'stretch',
   },
   buttonTextStyle: {
     color: '#27ACA7',
     marginBottom: 4,
-    marginLeft: 10,
-    fontSize: 36,
+    marginLeft: 20,
+    fontSize: 32,
     fontWeight: 'bold',
     alignSelf: 'center',
   },
@@ -66,10 +84,9 @@ export default ({}) => {
           <Text style={styles.buttonTextStyle}>Objetos</Text>
 
           <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image class="exclui" source={require('../assets/excluir.png')} />
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
+
           </TouchableOpacity>
 
         </TouchableOpacity>
@@ -82,8 +99,13 @@ export default ({}) => {
             style={styles.buttonImageIconStyle}
           />
           <Text style={styles.buttonTextStyle}>Cores</Text>
-          <Image class="edit" source={require('../assets/edit.png')} />
-          <Image class="exclui" source={require('../assets/excluir.png')} />
+
+          <TouchableOpacity>
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
+        
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('Favorites')}
@@ -94,8 +116,12 @@ export default ({}) => {
             style={styles.buttonImageIconStyle}
           />
           <Text style={styles.buttonTextStyle}>Animais</Text>
-          <Image class="edit" source={require('../assets/edit.png')} />
-          <Image class="exclui" source={require('../assets/excluir.png')} />
+          
+          <TouchableOpacity>
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('Profile')}
@@ -106,8 +132,12 @@ export default ({}) => {
             style={styles.buttonImageIconStyle}
           />
           <Text style={styles.buttonTextStyle}>Adjetivos</Text>
-          <Image class="edit" source={require('../assets/edit.png')} />
-          <Image class="exclui" source={require('../assets/excluir.png')} />
+          
+          <TouchableOpacity>
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
         </TouchableOpacity>
 
         <TouchableOpacity
@@ -119,8 +149,11 @@ export default ({}) => {
             style={styles.buttonImageIconStyle}
           />
           <Text style={styles.buttonTextStyle}>Pronomes</Text>
-          <Image class="edit" source={require('../assets/edit.png')} />
-          <Image class="exclui" source={require('../assets/excluir.png')} />
+          <TouchableOpacity>
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
         </TouchableOpacity>
       </View>
     </SafeAreaView>

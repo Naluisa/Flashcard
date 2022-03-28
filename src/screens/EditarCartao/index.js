@@ -36,7 +36,6 @@ export default () => {
           <TextoCartao>Frente</TextoCartao>
           <TextInput
                   style={styles.input}
-                  placeholder="Digite Aqui"
                   />
 
         </TouchableOpacity>
@@ -47,7 +46,6 @@ export default () => {
           <TextoCartao>Verso</TextoCartao>
           <TextInput
                   style={styles.input}
-                  placeholder="Digite Aqui"
                   />
         </TouchableOpacity>
         </View>

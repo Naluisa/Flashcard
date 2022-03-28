@@ -60,18 +60,55 @@ background-color:#6A61A1;
 `;
 
 export const BotaoCustomizado2 = styled.TouchableOpacity`
+width: 130px;
     height: 46px;
-    background-color:#00000000;
+    background-color:#57966A;
     justify-content: center;
     align-items: center;
-    border-color: white;
     borderWidth:1;
-    marginTop: -50;
+    marginTop: 15px;
+    marginLeft: 110;
+    marginBottom: 25;
+    border-radius: 5px;
+
 `;
 export const TextoBotaoCustomizado = styled.Text`
-    font-size: 13px;
+    font-size: 20px;
     color: white;
     font-weight: bold;
+
+`;
+export const TextoFiltro = styled.Text`
+    font-size: 12px;
+    color: #6200EE;
+    margin-top: -10px;
+`;
+export const TextoTituloFrente = styled.Text`
+    font-size: 12px;
+    color: #868686;
+    margin-top: -5px;
+    margin-right: 60px;
+`;
+export const TextoFrente = styled.Text`
+    color: #27ACA7;
+    font-weight: bold;
+    font-size: 25;
+    margin-top: 15px;
+    margin-left: -125px;
+    margin-right: 30px;
+
+`;
+export const TextoTituloVerso = styled.Text`
+    font-size: 12px;
+    color: #868686;
+    margin-top: -5px;
+`;
+export const TextoVerso = styled.Text`
+    color: #27ACA7;
+    font-weight: bold;
+    font-size: 25;
+    margin-top: 15px;
+margin-right: -25px;
 
 `;
 export const TextoNegritoMensagemBotao = styled.Text`

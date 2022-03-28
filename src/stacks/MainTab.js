@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import TabBarCustomizada from '../components/TabBarCustomizada';
@@ -17,4 +17,4 @@ export default() => (
         <Tab.Screen name="Favorites" component={Favorites}/>
         <Tab.Screen name="Profile" component={Profile}/>
     </Tab.Navigator>
-)
+)*/

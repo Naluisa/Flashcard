@@ -6,7 +6,7 @@ HeaderArea,
 HeaderTitle,
 ListArea } from './styles';
 
-import Cartoes from '../../components/Cartoes'
+import Cartoes from '../../components/Cartoes/Cartoes'
 
 
 export default () => {

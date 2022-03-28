@@ -13,8 +13,6 @@ import {
   Text
 } from './styles';
 
-import Logo from '../../assets/Logo.svg';
-import IconeEmail from '../../assets/email.svg';
 import IconeOlho from '../../assets/eye.svg';
 
 import LoginInput from '../../components/LoginInput';
