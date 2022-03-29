@@ -25,7 +25,6 @@ const Input = styled.TextInput`
 export default ({IconSvg, placeholder, value, onChangeText, password, }) => {
     return(
         <AreaInput>
-            <IconSvg width="24" height="24" fill="black"/>
             <Input
                 placeholder={placeholder}
                 placeholderTextColor="#6200EE"

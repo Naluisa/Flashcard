@@ -13,7 +13,7 @@ import {
   Imagem,
   Text
 } from '../LogTeste/styles';
-import {Image} from 'react-native';
+import {Image, TextInput,StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 
 import {buttonEye} from './styles';
@@ -26,7 +26,12 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default () => {
   const navigation = useNavigation();
 
-  return (
+  const [email, onChangeEmail] = React.useState(null);
+
+  const handleMessageButtonClick = () => {
+    navigation.navigate('Cartoes');
+}
+  return ( 
     <Container>
       <AreaInput>
       <Imagem source={require('../../assets/logo.png')}/>
@@ -34,12 +39,16 @@ export default () => {
 
         <AreaInputLogin>
             <Texto>E-mail</Texto>
-            <Input/>
+            <TextInput  
+            style={styles.input}
+            onChangeEmail={onChangeEmail}
+            value={email}/>
         </AreaInputLogin>
+
         <AreaInputLogin>
             <Texto>Senha</Texto>
-            <Input/>
-            <TouchableOpacity>
+            <TextInput style={styles.input}/>
+            <TouchableOpacity style={styles.eye}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
         </AreaInputLogin>
@@ -47,7 +56,7 @@ export default () => {
         <TextoNegritoMensagemBotao>Esqueci a senha</TextoNegritoMensagemBotao>
 
         <BotaoCustomizado >
-          <TextoBotaoCustomizado>ENTRAR</TextoBotaoCustomizado>
+          <TextoBotaoCustomizado onPress={handleMessageButtonClick}>ENTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
 
         <BotaoCustomizado2>
@@ -83,3 +92,21 @@ color: #6200EE;
 margin-top: -25px;
 `;
 
+const styles = StyleSheet.create({
+input: {
+  height: 10,
+  width:220,
+  color: '#000000',
+  marginLeft: -40,
+  marginTop: 20,
+  fontSize: 20,
+  fontWeight: 'bold',
+  borderWidth: 1,
+  borderLeftColor: '#6100ED',
+  
+},
+eye:{
+  marginLeft: 30, 
+  marginTop: 10, 
+}
+});

@@ -6,6 +6,7 @@ import Preload from '../screens/Preload';
 import Login from '../screens/Login';
 import LogTeste from '../screens/LogTeste';
 import Cadastro from '../screens/Cadastro';
+import CadastroTeste from '../screens/Cadastro';
 import MainTab from './MainTab';
 import Colecoes from '../screens/Colecoes';
 import Cartoes from '../screens/Cartoes';
@@ -38,7 +39,7 @@ export default () => (
     >
         
         
-                <Stack.Screen name="LogTeste" component={LogTeste } />
+                <Stack.Screen name="Colecoes" component={Colecoes } />
 
 
 

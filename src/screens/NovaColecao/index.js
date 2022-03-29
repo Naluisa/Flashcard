@@ -11,7 +11,10 @@ import {
   TextoNegritoMensagemBotao,
 } from './styles';
 
-import {Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet,TextInput} from 'react-native';
+
+import styled from 'styled-components/native';
+
 
 import IconeEmail from '../../assets/email.svg';
 import IconeCadeado from '../../assets/lock.svg';
@@ -43,7 +46,7 @@ export default () => {
         });
       });
     } else {
-      alert('Preencha os campos');
+      navigation.navigate('MainTab');
     }
   };
 
@@ -60,8 +63,14 @@ export default () => {
       padding: 15,
       flexDirection: 'row',
     },
+    buttonFacebookStyle2: {
+      backgroundColor: '#FFFFFF',
+      marginBottom: 20,
+      padding: 15,
+      flexDirection: 'row',
+    },
     imagem:{
-      marginLeft: 'auto',
+      marginLeft: 70,
       marginRight: 'auto',
     },
   });
@@ -72,24 +81,23 @@ export default () => {
           Preencha os dados referente à coleção a ser criada
         </TextoNegritoMensagemBotao>
 
-        <LoginInput
-          IconSvg={IconeEmail}
-          placeholder="Nome coleção"
-          value={email}
-          onChangeText={t => setEmail(t)}
-          label="Nome coleção"
-        />
+        <AreaInputLogin>
+            <Texto>Nome coleção</Texto>
+            <TextInput  
+            style={styles.input}/>
+        </AreaInputLogin>
 
-        <LoginInput
-          IconSvg={IconeCadeado}
-          placeholder="Senha"
-          value={senha}
-          onChangeText={t => setSenha(t)}
-          password={true}
-        />
         <TouchableOpacity style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image style={styles.imagem} source={require('../../assets/mais.png')} />
+                  activeOpacity={0.5}>
+            <Texto2>Descrição</Texto2>
+            <TextInput  
+            style={styles.input}/>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonFacebookStyle}
+                  activeOpacity={0.5}>
+            <Texto2>Imagem</Texto2>
+            <Image style={styles.imagem} source={require('../../assets/mais.png')} />
         </TouchableOpacity>
         
 
@@ -103,3 +111,52 @@ export default () => {
     </Container>
   );
 };
+
+const AreaInputLogin = styled.View`
+    width: 100%;
+    height: 60px;
+    background-color: #FFFFFF;
+    flex-direction: row;
+    padding-left: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+`;
+
+const Input = styled.TextInput`
+    flex: 1;
+    font-size: 16px;
+    color: black;
+    margin-left: 10px;
+    width: 10px;
+    height: 10px;
+`;
+
+const Texto = styled.Text`
+font-size: 13px;
+color: #6200EE;
+margin-top: -25px;
+`;
+const Texto2 = styled.Text`
+font-size: 13px;
+color: #6200EE;
+margin-top: -5px;
+`;
+
+const styles = StyleSheet.create({
+input: {
+  height: 10,
+  width:220,
+  color: '#000000',
+  marginLeft: -80,
+  marginTop: 40,
+  fontSize: 20,
+  fontWeight: 'bold',
+  borderWidth: 1,
+  borderLeftColor: '#6100ED',
+  
+},
+eye:{
+  marginLeft: 30, 
+  marginTop: 10, 
+}
+});

@@ -31,8 +31,10 @@ export const BotaoCustomizado2 = styled.TouchableOpacity`
 `;
 
 export const TextoBotaoCustomizado = styled.Text`
-    font-size: 14px;
+    font-size: 15px;
     color: white;
+    font-weight: bold;
+
 `;
 
 export const BotaoMensagemLogin = styled.TouchableOpacity`
@@ -44,9 +46,10 @@ export const BotaoMensagemLogin = styled.TouchableOpacity`
 export const TextoMensagemBotao = styled.Text`
     font-size: 16px;
     color: white;
+    font-weight: bold;
 `;
 export const TextoNegritoMensagemBotao = styled.Text`
-font-size: 18px;
+font-size: 20px;
 color: white;
 margin-left: 5px;
 text-align: center;
