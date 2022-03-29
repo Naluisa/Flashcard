@@ -28,8 +28,27 @@ export default () => {
 
   const [email, onChangeEmail] = React.useState(null);
 
+  const handleLoginClick = () => {
+    if (email !== '' && senha !== '') {
+      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
+        console.log('userCredential', userCredential);
+        AsyncStorage.setItem('email', email);
+        AsyncStorage.setItem(
+          '@SalvaLogin',
+          JSON.stringify(userCredential),
+        ).then(() => {
+          const user = userCredential.user;
+          console.log(user);
+          navigation.navigate('MainTab');
+        });
+      });
+    } else {
+      navigation.navigate('MainTab');
+    }
+  };
+
   const handleMessageButtonClick = () => {
-    navigation.navigate('Cartoes');
+    navigation.navigate('Cadastro');
 }
   return ( 
     <Container>
@@ -56,11 +75,11 @@ export default () => {
         <TextoNegritoMensagemBotao>Esqueci a senha</TextoNegritoMensagemBotao>
 
         <BotaoCustomizado >
-          <TextoBotaoCustomizado onPress={handleMessageButtonClick}>ENTRAR</TextoBotaoCustomizado>
+          <TextoBotaoCustomizado>ENTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
 
         <BotaoCustomizado2>
-          <TextoBotaoCustomizado>CADASTRE-SE</TextoBotaoCustomizado>
+          <TextoBotaoCustomizado onPress={handleMessageButtonClick}>CADASTRE-SE</TextoBotaoCustomizado>
         </BotaoCustomizado2>
       </AreaInput>
     </Container>

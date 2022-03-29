@@ -70,6 +70,9 @@ const styles = StyleSheet.create({
 export default ({}) => {
   const navigation = useNavigation();
 
+  const handleMessageButtonClick = () => {
+    navigation.navigate('EditarColecao');
+}
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -84,9 +87,13 @@ export default ({}) => {
           <Text style={styles.buttonTextStyle}>Objetos</Text>
 
           <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <TouchableOpacity>
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}
+            onPress={handleMessageButtonClick}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-
+            </TouchableOpacity>
           </TouchableOpacity>
 
         </TouchableOpacity>
@@ -101,9 +108,12 @@ export default ({}) => {
           <Text style={styles.buttonTextStyle}>Cores</Text>
 
           <TouchableOpacity>
+            <TouchableOpacity>
             <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-
+            </TouchableOpacity>
           </TouchableOpacity>
         
         </TouchableOpacity>
@@ -118,9 +128,12 @@ export default ({}) => {
           <Text style={styles.buttonTextStyle}>Animais</Text>
           
           <TouchableOpacity>
+            <TouchableOpacity>
             <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-
+            </TouchableOpacity>
           </TouchableOpacity>
         </TouchableOpacity>
         <TouchableOpacity
@@ -134,9 +147,12 @@ export default ({}) => {
           <Text style={styles.buttonTextStyle}>Adjetivos</Text>
           
           <TouchableOpacity>
+            <TouchableOpacity>
             <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-
+            </TouchableOpacity>
           </TouchableOpacity>
         </TouchableOpacity>
 
@@ -150,9 +166,12 @@ export default ({}) => {
           />
           <Text style={styles.buttonTextStyle}>Pronomes</Text>
           <TouchableOpacity>
+            <TouchableOpacity>
             <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            </TouchableOpacity>
+            <TouchableOpacity>
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-
+            </TouchableOpacity>
           </TouchableOpacity>
         </TouchableOpacity>
       </View>
