@@ -34,14 +34,10 @@ export default () => (
         screenOptions={{
             headerShown: false
         }}
-    >
-                        <Stack.Screen name="Colecoes" component={Colecoes } />
-                        <Stack.Screen name="EditarColecao" component={EditarColecao } />
-
+        >
+                    <Stack.Screen name="Cadastro" component={Cadastro } />
+        <Stack.Screen name="Colecoes" component={Colecoes } />
+        <Stack.Screen name="EditarColecao" component={EditarColecao } />
         <Stack.Screen name="LogTeste" component={LogTeste } />
-                <Stack.Screen name="Cadastro" component={Cadastro } />
-
-
-
     </Stack.Navigator>
 );
