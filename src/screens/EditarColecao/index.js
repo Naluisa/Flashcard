@@ -6,22 +6,19 @@ import {
   BotaoCustomizado,
   BotaoCustomizado2,
   TextoBotaoCustomizado,
-  BotaoMensagemLogin,
-  TextoMensagemBotao,
   TextoNegritoMensagemBotao,
-} from './styles';
+} from '../NovaColecao/styles';
 
-import {Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet,TextInput} from 'react-native';
 
-import IconeEmail from '../../assets/email.svg';
-import IconeCadeado from '../../assets/lock.svg';
+import styled from 'styled-components/native';
 
-import LoginInput from '../../components/LoginInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {auth} from '../../services/config';
 
 export default () => {
+  
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -42,7 +39,7 @@ export default () => {
         });
       });
     } else {
-      alert('Preencha os campos');
+      navigation.navigate('MainTab');
     }
   };
 
@@ -59,9 +56,31 @@ export default () => {
       padding: 15,
       flexDirection: 'row',
     },
+    buttonFacebookStyle2: {
+      backgroundColor: '#FFFFFF',
+      marginBottom: 20,
+      padding: 15,
+      flexDirection: 'row',
+    },
     imagem:{
-      marginLeft: 'auto',
+      marginLeft: 70,
       marginRight: 'auto',
+    },
+    input: {
+      width: 270,
+  height: 60,
+  color: '#000000',
+  marginLeft: -90,
+  marginTop: 20,
+  fontSize: 14,
+    },
+    input2: {
+      width: 270,
+  height: 70,
+  color: '#000000',
+  marginLeft: -60,
+  marginTop: -8,
+  fontSize: 14,
     },
   });
   return (
@@ -71,34 +90,56 @@ export default () => {
           Preencha os dados referente à coleção a ser criada
         </TextoNegritoMensagemBotao>
 
-        <LoginInput
-          IconSvg={IconeEmail}
-          placeholder="Nome coleção"
-          value={email}
-          onChangeText={t => setEmail(t)}
-          label="Nome coleção"
-        />
+        <AreaInputLogin>
+            <Texto>Nome coleção</Texto>
+            <TextInput  
+            style={styles.input}/>
+        </AreaInputLogin>
 
-        <LoginInput
-          IconSvg={IconeCadeado}
-          placeholder="Senha"
-          value={senha}
-          onChangeText={t => setSenha(t)}
-          password={true}
-        />
         <TouchableOpacity style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image style={styles.imagem} source={require('../../assets/mais.png')} />
+                  activeOpacity={0.5}>
+            <Texto2>Descrição</Texto2>
+            <TextInput  
+            style={styles.input2}/>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonFacebookStyle}
+                  activeOpacity={0.5}>
+            <Texto2>Imagem</Texto2>
+            <Image style={styles.imagem} source={require('../../assets/mais.png')} />
         </TouchableOpacity>
         
 
-        <BotaoCustomizado onPress={handleLoginClick}>
+        <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
           <TextoBotaoCustomizado>SALVAR ALTERAÇÕES</TextoBotaoCustomizado>
         </BotaoCustomizado>
-        <BotaoCustomizado2 onPress={handleLoginClick}>
+        <BotaoCustomizado2 onPress={() => navigation.navigate('Colecoes')}>
           <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
         </BotaoCustomizado2>
       </AreaInput>
     </Container>
   );
 };
+
+const AreaInputLogin = styled.View`
+    width: 100%;
+    height: 60px;
+    background-color: #FFFFFF;
+    flex-direction: row;
+    padding-left: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+`;
+
+const Texto = styled.Text`
+font-size: 13px;
+color: #6200EE;
+margin-top: -25px;
+`;
+const Texto2 = styled.Text`
+font-size: 13px;
+color: #6200EE;
+margin-top: -5px;
+`;
+

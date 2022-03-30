@@ -3,25 +3,18 @@ import {useNavigation} from '@react-navigation/native';
 import {
   Container,
   AreaInput,
-  BotaoCustomizado,
-  BotaoCustomizado2,
-  TextoBotaoCustomizado,
-  BotaoMensagemLogin,
-  TextoMensagemBotao,
-  TextoNegritoMensagemBotao,
-} from './styles';
+} from '../NovaColecao/styles';
 
-import {Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {TouchableOpacity, StyleSheet, View} from 'react-native';
 
-import IconeEmail from '../../assets/email.svg';
-import IconeCadeado from '../../assets/lock.svg';
+import styled from 'styled-components/native';
 
-import LoginInput from '../../components/LoginInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {auth} from '../../services/config';
 
 export default () => {
+  
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -42,7 +35,7 @@ export default () => {
         });
       });
     } else {
-      alert('Preencha os campos');
+      navigation.navigate('MainTab');
     }
   };
 
@@ -52,53 +45,64 @@ export default () => {
     });
   };
 
-  const styles = StyleSheet.create({
-    buttonFacebookStyle: {
-      backgroundColor: '#FFFFFF',
-      marginBottom: 20,
-      padding: 15,
-      flexDirection: 'row',
-    },
-    imagem:{
-      marginLeft: 'auto',
-      marginRight: 'auto',
-    },
-  });
   return (
     <Container>
       <AreaInput>
-        <TextoNegritoMensagemBotao>
-          Preencha os dados referente à coleção a ser criada
-        </TextoNegritoMensagemBotao>
+        <View style={styles.buttonFacebookStyle}
+                  activeOpacity={0.5}>
+            <Texto2>Você tem certeza que deseja excluir essa coleção?</Texto2>
+            
+            <TouchableOpacity>
+              <Texto3>SIM</Texto3>
+            </TouchableOpacity>
 
-        <LoginInput
-          IconSvg={IconeEmail}
-          placeholder="Nome coleção"
-          value={email}
-          onChangeText={t => setEmail(t)}
-          label="Nome coleção"
-        />
-
-        <LoginInput
-          IconSvg={IconeCadeado}
-          placeholder="Senha"
-          value={senha}
-          onChangeText={t => setSenha(t)}
-          password={true}
-        />
-        <TouchableOpacity style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image style={styles.imagem} source={require('../../assets/mais.png')} />
-        </TouchableOpacity>
-        
-
-        <BotaoCustomizado onPress={handleLoginClick}>
-          <TextoBotaoCustomizado>SALVAR ALTERAÇÕES</TextoBotaoCustomizado>
-        </BotaoCustomizado>
-        <BotaoCustomizado2 onPress={handleLoginClick}>
-          <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
-        </BotaoCustomizado2>
+            <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
+              <Texto4>CANCELAR</Texto4>
+            </TouchableOpacity>
+        </View>
       </AreaInput>
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonFacebookStyle: {
+    backgroundColor: '#332E56',
+    marginBottom: 20,
+    padding: 15,
+    flexDirection: 'row',
+  },
+});
+
+const AreaInputLogin = styled.View`
+    width: 100%;
+    height: 60px;
+    background-color: #FFFFFF;
+    flex-direction: row;
+    padding-left: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+`;
+
+const Texto2 = styled.Text`
+font-size: 18px;
+color: white;
+margin-top: 20px;
+margin-left: 20px;
+`;
+const Texto3 = styled.Text`
+font-size: 18px;
+color: white;
+margin-top: 90px;
+margin-left: -250px;
+margin-rigt: -190px;
+
+`;
+const Texto4 = styled.Text`
+font-size: 18px;
+color: white;
+margin-top: 90px;
+margin-left: -75px;
+`;
+

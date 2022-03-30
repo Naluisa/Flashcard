@@ -7,8 +7,6 @@ import {
   BotaoCustomizado,
   BotaoCustomizado2,
   TextoBotaoCustomizado,
-  BotaoMensagemLogin,
-  TextoMensagemBotao,
   TextoNegritoMensagemBotao,
   Imagem,
   Text
@@ -16,9 +14,6 @@ import {
 import {Image, TextInput,StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 
-import {buttonEye} from './styles';
-
-import LoginInputTeste from '../../components/LoginInputTeste';
 
 import {auth} from '../../services/config';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -61,20 +56,22 @@ export default () => {
             <TextInput  
             style={styles.input}
             onChangeEmail={onChangeEmail}
-            value={email}/>
+            value={email}
+            placeholder="fulano@teste.com"/>
         </AreaInputLogin>
 
         <AreaInputLogin>
             <Texto>Senha</Texto>
-            <TextInput style={styles.input}/>
+            <TextInput style={styles.input} placeholder="******"/>
             <TouchableOpacity style={styles.eye}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
         </AreaInputLogin>
-
+        <TouchableOpacity style={styles.EsqueceuSenha}>
         <TextoNegritoMensagemBotao>Esqueci a senha</TextoNegritoMensagemBotao>
+        </TouchableOpacity>  
 
-        <BotaoCustomizado >
+          <BotaoCustomizado >
           <TextoBotaoCustomizado>ENTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
 
@@ -91,7 +88,7 @@ const AreaInputLogin = styled.View`
     height: 60px;
     background-color: #FFFFFF;
     flex-direction: row;
-    padding-left: 15px;
+    padding-left: 10px;
     align-items: center;
     margin-bottom: 15px;
 `;
@@ -113,19 +110,20 @@ margin-top: -25px;
 
 const styles = StyleSheet.create({
 input: {
-  height: 10,
-  width:220,
+  width: 270,
+  height: 60,
   color: '#000000',
   marginLeft: -40,
   marginTop: 20,
-  fontSize: 20,
-  fontWeight: 'bold',
-  borderWidth: 1,
-  borderLeftColor: '#6100ED',
+  fontSize: 14,
+
   
 },
 eye:{
-  marginLeft: 30, 
+  marginLeft: 5, 
   marginTop: 10, 
+},
+EsqueceuSenha:{
+  padding:2,
 }
 });

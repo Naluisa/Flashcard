@@ -64,6 +64,24 @@ const styles = StyleSheet.create({
     width: 1,
     height: 50,
   },
+
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 70,
+    height: 70,
+  },
+  ImagemTexto: {
+    marginRight: -5,
+  },
   
 });
 
@@ -73,11 +91,13 @@ export default ({}) => {
   const handleMessageButtonClick = () => {
     navigation.navigate('EditarColecao');
 }
+  const BotaoAdiciona = () => {
+    navigation.navigate('EditarColecao');
+}
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
         <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
           <Image
@@ -85,14 +105,12 @@ export default ({}) => {
             style={styles.buttonImageIconStyle}
           />
           <Text style={styles.buttonTextStyle}>Objetos</Text>
-
-          <TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}
-            onPress={handleMessageButtonClick}/>
+          <TouchableOpacity >
+            <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}>
+            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
             </TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
+            <TouchableOpacity onPress={() => navigation.navigate('LogTeste')} >
+            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui}/>
             </TouchableOpacity>
           </TouchableOpacity>
 
@@ -173,6 +191,19 @@ export default ({}) => {
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
             </TouchableOpacity>
           </TouchableOpacity>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.touchableOpacityStyle}
+          onPress={() => navigation.navigate('NovaColecao')}>
+          <Image
+            source={{
+              uri:
+                'https://developerplus.com.br/wp-content/uploads/2021/12/plus_icon.png',
+            }}
+            style={styles.floatingButtonStyle}
+          />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

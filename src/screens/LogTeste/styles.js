@@ -46,7 +46,7 @@ export const TextoMensagemBotao = styled.Text`
   color: white;
 `;
 export const TextoNegritoMensagemBotao = styled.Text`
-  font-size: 16px;
+  font-size: 15px;
   color: white;
   margin-left: 5px;
   text-align: right;

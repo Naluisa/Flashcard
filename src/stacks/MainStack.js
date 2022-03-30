@@ -12,7 +12,9 @@ import Cartoes from '../screens/Cartoes';
 import NovaColecao from '../screens/NovaColecao';
 import NovoCartao from '../screens/NovoCartao';
 import EditarColecao from '../screens/EditarColecao';
+import ExcluirColecao from '../screens/ExcluirColecao';
 import EditarCartao from '../screens/EditarCartao';
+import ExcluirCartao from '../screens/ExcluirCartao';
 
 const Stack = createStackNavigator();
 
@@ -21,9 +23,9 @@ const Stack = createStackNavigator();
 //<Stack.Screen name="Cadastro" component={Cadastro} />
 //<Stack.Screen name="MainTab" component={MainTab} />
  //        <Stack.Screen name="Colecoes" component={Colecoes} />
- //        <Stack.Screen name="Cartoes" component={Cartoes} />
- //<Stack.Screen name="NovaColecao" component={NovaColecao} />
- //                <Stack.Screen name="NovoCartao" component={NovoCartao } />
+ //        
+ //
+ //                
 
 
 
@@ -35,9 +37,26 @@ export default () => (
             headerShown: false
         }}
         >
+            <Stack.Screen name="ExcluirCartao" component={ExcluirCartao } />
+
+            <Stack.Screen name="EditarCartao" component={EditarCartao } />
+            <Stack.Screen name="NovoCartao" component={NovoCartao } />
+                                            <Stack.Screen name="ExcluirColecao" component={ExcluirColecao } />
+
+                                <Stack.Screen name="EditarColecao" component={EditarColecao } />
+
+                                    <Stack.Screen name="NovaColecao" component={NovaColecao} />
+
+
+            <Stack.Screen name="Cartoes" component={Cartoes} />
+
                     <Stack.Screen name="Cadastro" component={Cadastro } />
-        <Stack.Screen name="Colecoes" component={Colecoes } />
-        <Stack.Screen name="EditarColecao" component={EditarColecao } />
-        <Stack.Screen name="LogTeste" component={LogTeste } />
+
+                                <Stack.Screen name="LogTeste" component={LogTeste } />
+
+                    <Stack.Screen name="Colecoes" component={Colecoes } />
+
+
+
     </Stack.Navigator>
 );

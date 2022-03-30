@@ -55,7 +55,7 @@ background-color:#6A61A1;
     justify-content: center;
     align-items: center;
   margin-top: 50px;
-  margin-bottom: 150px;
+  margin-bottom: 60px;
 
 `;
 
@@ -66,10 +66,10 @@ export const BotaoCustomizado2 = styled.TouchableOpacity`
     align-items: center;
     border-color: white;
     borderWidth:1;
-    marginTop: -50;
+
 `;
 export const TextoBotaoCustomizado = styled.Text`
-    font-size: 13px;
+    font-size: 14px;
     color: white;
     font-weight: bold;
 
@@ -79,7 +79,7 @@ font-size: 19px;
 color: white;
 margin-left: 5px;
 text-align: center;
-margin-bottom: 50px;
+margin-bottom: 30px;
 
 `;
 

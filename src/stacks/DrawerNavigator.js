@@ -12,7 +12,7 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   return (
     <Drawer.Navigator>
-      <Drawer.Screen name="Minhas coleções" component={MainStack} />
+      <Drawer.Screen name="Minhas coleções" component={MainStack} screenOptions={{headerShown: false}}/>
       <Drawer.Screen name="Logout" component={LogTeste} />
     </Drawer.Navigator>
   );

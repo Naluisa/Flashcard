@@ -16,7 +16,7 @@ height: 46px;
 background-color:#6A61A1;
     justify-content: center;
     align-items: center;
-  margin-top: 50px;
+  margin-top: -10px;
 
 `;
 
@@ -27,7 +27,7 @@ export const BotaoCustomizado2 = styled.TouchableOpacity`
     align-items: center;
     border-color: white;
     borderWidth:1;
-
+margin-top: 100px;
 `;
 
 export const TextoBotaoCustomizado = styled.Text`
@@ -52,6 +52,7 @@ export const TextoNegritoMensagemBotao = styled.Text`
 font-size: 20px;
 color: white;
 margin-left: 5px;
+margin-top: 20px;
 text-align: center;
 `;
 

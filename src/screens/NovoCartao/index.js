@@ -34,12 +34,10 @@ export default () => {
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
           <TextoCartao>Frente</TextoCartao>
-          <TextInput
-                  style={styles.input}
+          <TextInput style={styles.input}
                   placeholder="Digite Aqui"
-                  />
-
-        </TouchableOpacity>
+          />
+    </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigation.navigate('MainTab')}
           style={styles.buttonFacebookStyle2}
@@ -52,10 +50,10 @@ export default () => {
         </TouchableOpacity>
         </View>
 
-          <BotaoCustomizado >
+          <BotaoCustomizado onPress={() => navigation.navigate('Cartoes')}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
-        <BotaoCustomizado2 >
+        <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>
           <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
         </BotaoCustomizado2>
 
@@ -76,7 +74,8 @@ const styles = StyleSheet.create({
     padding: 40,
     flexDirection: 'row',
     borderRadius: 10,
-
+    borderBottomRightRadius: 0,
+    borderBottomLeftRadius: 0,
   },
   buttonFacebookStyle2: {
     backgroundColor: '#FFFFFF',
@@ -85,6 +84,8 @@ const styles = StyleSheet.create({
     padding: 40,
     flexDirection: 'row',
     borderRadius: 10,
+    borderTopRightRadius: 0,
+    borderTopLeftRadius: 0,
   },
   input: {
     height: 60,
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
     fontSize: 25,
     fontWeight: 'bold',
     width: 170,
-    textAlign: 'center'
+    textAlign: 'center',
+    paddingBottom: -17,
   },
   buttonTextStyle: {
     color: '#777777',

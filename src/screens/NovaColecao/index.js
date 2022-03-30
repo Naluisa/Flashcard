@@ -6,20 +6,13 @@ import {
   BotaoCustomizado,
   BotaoCustomizado2,
   TextoBotaoCustomizado,
-  BotaoMensagemLogin,
-  TextoMensagemBotao,
   TextoNegritoMensagemBotao,
-} from './styles';
+} from '../NovaColecao/styles';
 
 import {Image, TouchableOpacity, StyleSheet,TextInput} from 'react-native';
 
 import styled from 'styled-components/native';
 
-
-import IconeEmail from '../../assets/email.svg';
-import IconeCadeado from '../../assets/lock.svg';
-
-import LoginInput from '../../components/LoginInput';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {auth} from '../../services/config';
@@ -73,6 +66,22 @@ export default () => {
       marginLeft: 70,
       marginRight: 'auto',
     },
+    input: {
+      width: 270,
+  height: 60,
+  color: '#000000',
+  marginLeft: -90,
+  marginTop: 20,
+  fontSize: 14,
+    },
+    input2: {
+      width: 270,
+  height: 70,
+  color: '#000000',
+  marginLeft: -60,
+  marginTop: -8,
+  fontSize: 14,
+    },
   });
   return (
     <Container>
@@ -91,7 +100,7 @@ export default () => {
                   activeOpacity={0.5}>
             <Texto2>Descrição</Texto2>
             <TextInput  
-            style={styles.input}/>
+            style={styles.input2}/>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
@@ -101,10 +110,10 @@ export default () => {
         </TouchableOpacity>
         
 
-        <BotaoCustomizado onPress={handleLoginClick}>
+        <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
-        <BotaoCustomizado2 onPress={handleLoginClick}>
+        <BotaoCustomizado2 onPress={() => navigation.navigate('Colecoes')}>
           <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
         </BotaoCustomizado2>
       </AreaInput>
@@ -120,15 +129,7 @@ const AreaInputLogin = styled.View`
     padding-left: 15px;
     align-items: center;
     margin-bottom: 15px;
-`;
-
-const Input = styled.TextInput`
-    flex: 1;
-    font-size: 16px;
-    color: black;
-    margin-left: 10px;
-    width: 10px;
-    height: 10px;
+    margin-top: 30px;
 `;
 
 const Texto = styled.Text`
@@ -142,21 +143,3 @@ color: #6200EE;
 margin-top: -5px;
 `;
 
-const styles = StyleSheet.create({
-input: {
-  height: 10,
-  width:220,
-  color: '#000000',
-  marginLeft: -80,
-  marginTop: 40,
-  fontSize: 20,
-  fontWeight: 'bold',
-  borderWidth: 1,
-  borderLeftColor: '#6100ED',
-  
-},
-eye:{
-  marginLeft: 30, 
-  marginTop: 10, 
-}
-});

@@ -1,113 +1,108 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Container, Scroller, HeaderArea, HeaderTitle, ListArea,TextoNegritoMensagemBotao,BotaoCustomizado,
-  TextoBotaoCustomizado,BotaoCustomizado2,TextoCartao, View,} from './styles';
-  import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    Image,
-    TouchableOpacity,
-    TextInput, 
-  } from 'react-native';
+import {
+  Container,
+  AreaInput,
+} from '../NovaColecao/styles';
 
-import MenuItem from '../../components/MenuItem';
-import Cartao from '../../components/Cartao';
+import {TouchableOpacity, StyleSheet, View} from 'react-native';
 
-import IconeOlho from '../../assets/eye.svg';
-import { black } from 'react-native-paper/lib/typescript/styles/colors';
-import { block } from 'react-native-reanimated';
+import styled from 'styled-components/native';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import {auth} from '../../services/config';
+
 export default () => {
+  
   const navigation = useNavigation();
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const handleLoginClick = () => {
+    if (email !== '' && senha !== '') {
+      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
+        console.log('userCredential', userCredential);
+        AsyncStorage.setItem('email', email);
+        AsyncStorage.setItem(
+          '@SalvaLogin',
+          JSON.stringify(userCredential),
+        ).then(() => {
+          const user = userCredential.user;
+          console.log(user);
+          navigation.navigate('MainTab');
+        });
+      });
+    } else {
+      navigation.navigate('MainTab');
+    }
+  };
+
+  const handleMessageButtonClick = () => {
+    navigation.reset({
+      routes: [{name: 'Cadastro'}],
+    });
+  };
+
   return (
     <Container>
-      <Scroller>
-        <ListArea>
+      <AreaInput>
+        <View style={styles.buttonFacebookStyle}
+                  activeOpacity={0.5}>
+            <Texto2>Você tem certeza que deseja excluir esse cartão?</Texto2>
+            
+            <TouchableOpacity>
+              <Texto3>SIM</Texto3>
+            </TouchableOpacity>
 
-        <TextoNegritoMensagemBotao>
-          Preencha os dados da frente e do verso do flashcard
-        </TextoNegritoMensagemBotao>
-
-<View>
-    <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoCartao>Frente</TextoCartao>
-          <TextInput
-                  style={styles.input}
-                  placeholder="Digite Aqui"
-                  />
-
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle2}
-          activeOpacity={0.5}>
-          <TextoCartao>Verso</TextoCartao>
-          <TextInput
-                  style={styles.input}
-                  placeholder="Digite Aqui"
-                  />
-        </TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
+              <Texto4>CANCELAR</Texto4>
+            </TouchableOpacity>
         </View>
-
-          <BotaoCustomizado >
-          <TextoBotaoCustomizado>SALVAR ALTERAÇÕES</TextoBotaoCustomizado>
-        </BotaoCustomizado>
-        <BotaoCustomizado2 >
-          <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
-        </BotaoCustomizado2>
-
-        </ListArea>
-      </Scroller>
+      </AreaInput>
     </Container>
   );
 };
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#332E56',
-  },
   buttonFacebookStyle: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#332E56',
     marginBottom: 20,
-    padding: 40,
+    padding: 15,
     flexDirection: 'row',
-    borderRadius: 10,
-
   },
-  buttonFacebookStyle2: {
-    backgroundColor: '#FFFFFF',
-    marginBottom: 20,
-    marginTop: -17,
-    padding: 40,
-    flexDirection: 'row',
-    borderRadius: 10,
-  },
-  input: {
-    height: 60,
-    margin: 12,
-    borderBottomWidth: 2,
-    alignItems: 'center',
-    color: 'black',
-    marginLeft: 10,
-    fontSize: 25,
-    fontWeight: 'bold',
-    width: 170,
-    textAlign: 'center'
-  },
-  buttonTextStyle: {
-    color: '#777777',
-    marginBottom: 4,
-    marginLeft: 2,
-    marginTop: -10,
-    fontSize: 18,
-    textAlign: 'left',
-  },
-  Linha:{
-    backgroundColor: 'red',
-    width: 170,
-  }
 });
+
+const AreaInputLogin = styled.View`
+    width: 100%;
+    height: 60px;
+    background-color: #FFFFFF;
+    flex-direction: row;
+    padding-left: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+    margin-top: 30px;
+`;
+
+const Texto2 = styled.Text`
+font-size: 18px;
+color: white;
+margin-top: 20px;
+margin-left: 20px;
+`;
+const Texto3 = styled.Text`
+font-size: 18px;
+color: white;
+margin-top: 90px;
+margin-left: -250px;
+margin-rigt: -190px;
+
+`;
+const Texto4 = styled.Text`
+font-size: 18px;
+color: white;
+margin-top: 90px;
+margin-left: -75px;
+`;
+
