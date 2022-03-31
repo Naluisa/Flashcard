@@ -15,7 +15,7 @@ import styled from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {auth} from '../../services/config';
+import { db } from "../../services/config";
 
 export default () => {
   

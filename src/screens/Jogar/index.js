@@ -38,7 +38,7 @@ export default () => {
         <ListArea>
 
         <TextoNegritoMensagemBotao>
-          Preencha os dados da frente e do verso do flashcard
+          Cartão 1/8
         </TextoNegritoMensagemBotao>
 
 <View>
@@ -46,34 +46,16 @@ export default () => {
           onPress={() => navigation.navigate('MainTab')}
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
-          <TextoCartao>Frente</TextoCartao>
           <TextInput style={styles.input}
-                  placeholder="Digite Aqui"
                   value={frente}
                   onChangeText={t => setFrente(t)}
           />
     </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle2}
-          activeOpacity={0.5}>
-          <TextoCartao>Verso</TextoCartao>
-          <TextInput
-                  style={styles.input}
-                  placeholder="Digite Aqui"
-                  value={verso}
-                  onChangeText={t => setVerso(t)}
-                  />
-        </TouchableOpacity>
         </View>
 
           <BotaoCustomizado onPress={NovoCartao}>
-          <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
+          <TextoBotaoCustomizado>VIRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
-        <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>
-          <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
-        </BotaoCustomizado2>
-
         </ListArea>
       </Scroller>
     </Container>
@@ -87,18 +69,19 @@ const styles = StyleSheet.create({
   },
   buttonFacebookStyle: {
     backgroundColor: '#FFFFFF',
-    marginBottom: 20,
-    padding: 40,
+    marginBottom: 30,
+    padding:50,
+    paddingTop: 50,
     flexDirection: 'row',
     borderRadius: 10,
-    borderBottomRightRadius: 0,
-    borderBottomLeftRadius: 0,
+    marginLeft: 20,
+    marginRight: 20,
   },
   buttonFacebookStyle2: {
     backgroundColor: '#FFFFFF',
-    marginBottom: 20,
-    marginTop: -17,
-    padding: 40,
+    marginBottom: 10,
+    marginTop: -27,
+    padding: 70,
     flexDirection: 'row',
     borderRadius: 10,
     borderTopRightRadius: 0,
@@ -110,7 +93,9 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     alignItems: 'center',
     color: 'black',
-    marginLeft: 10,
+    marginLeft: 25,
+    marginTop: 110,
+    marginBottom: 110,
     fontSize: 25,
     fontWeight: 'bold',
     width: 170,

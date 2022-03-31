@@ -112,7 +112,25 @@ input: {
 },
 botoes: {
   display: 'inline', 
-}
+},
+touchableOpacityStyle: {
+  position: 'absolute',
+  width: 50,
+  height: 50,
+  alignItems: 'center',
+  justifyContent: 'center',
+  right: 30,
+  bottom: 30,
+},
+floatingButtonStyle: {
+  resizeMode: 'contain',
+  width: 70,
+  height: 70,
+  backgroundColor: '#7A71AF'
+},
+ImagemTexto: {
+  marginRight: -5,
+},
 });
 
 export default ({}) => {
@@ -215,6 +233,16 @@ export default ({}) => {
             <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
 
           </TouchableOpacity>
+        </TouchableOpacity>
+       
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.touchableOpacityStyle}
+          onPress={() => navigation.navigate('NovoCartao')}>
+          <Image
+            source={require('../../assets/plus.jpg')}
+            style={styles.floatingButtonStyle}
+          />
         </TouchableOpacity>
        
       </View>

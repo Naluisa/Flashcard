@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     width: 70,
     height: 70,
+    backgroundColor: '#7A71AF'
   },
   ImagemTexto: {
     marginRight: -5,
@@ -198,10 +199,7 @@ export default ({}) => {
           style={styles.touchableOpacityStyle}
           onPress={() => navigation.navigate('NovaColecao')}>
           <Image
-            source={{
-              uri:
-                'https://developerplus.com.br/wp-content/uploads/2021/12/plus_icon.png',
-            }}
+            source={require('../assets/plus.jpg')}
             style={styles.floatingButtonStyle}
           />
         </TouchableOpacity>

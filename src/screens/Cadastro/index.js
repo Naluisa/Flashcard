@@ -30,10 +30,8 @@ import {auth} from '../../services/config';
 export default () => {
   const navigation = useNavigation();
 
-  const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
-  const [numberField, setNumberField] = useState('');
 
   const handleLoginClick = () => {
     if (email !== '' && senha !== '') {
