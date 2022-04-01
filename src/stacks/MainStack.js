@@ -22,26 +22,30 @@ import Jogar4 from '../screens/Jogar4';
 
 const Stack = createStackNavigator();
 
-//<Stack.Screen name="Preload" component={Preload} />
+//
         //<Stack.Screen name="Login" component={Login} />
 //<Stack.Screen name="Cadastro" component={Cadastro} />
 //<Stack.Screen name="MainTab" component={MainTab} />
  //        <Stack.Screen name="Colecoes" component={Colecoes} />
  //        
  //
- //                
+ //                         <Stack.Screen name="Preload" component={Preload} />
+   
 
 
 
 
 export default () => (    
     <Stack.Navigator
-        initialRouteName="Preload"
+        initialRouteName="LogTeste"
         screenOptions={{
             headerShown: false
         }}
         >
-                        <Stack.Screen name="Jogar4" component={Jogar4 } />
+                                    <Stack.Screen name="Jogar4" component={Jogar4 } />
+                                    <Stack.Screen name="Preload" component={Preload} />
+                                <Stack.Screen name="Cadastro" component={Cadastro } />
+
                         <Stack.Screen name="Jogar3" component={Jogar3 } />
                         <Stack.Screen name="Jogar2" component={Jogar2 } />
                         <Stack.Screen name="Jogar" component={Jogar } />
@@ -63,7 +67,6 @@ export default () => (
 
 
 
-                    <Stack.Screen name="Cadastro" component={Cadastro } />
 
                                 <Stack.Screen name="LogTeste" component={LogTeste } />
 

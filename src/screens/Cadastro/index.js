@@ -7,8 +7,6 @@ import {
   AreaInput,
   BotaoCustomizado,
   TextoBotaoCustomizado,
-  BotaoMensagemLogin,
-  TextoMensagemBotao,
   TextoNegritoMensagemBotao,
   Imagem,
   Text,
@@ -16,13 +14,6 @@ import {
   TextoSenha
 } from './styles';
 
-import Logo from '../../assets/Logo.svg';
-import IconeEmail from '../../assets/email.svg';
-import IconeCadeado from '../../assets/lock.svg';
-import IconePessoa from '../../assets/person.svg';
-import IconeCasa from '../../assets/house.svg';
-
-import CadastroInput from '../../components/CadastroInput';
 import styled from 'styled-components/native';
 
 import {auth} from '../../services/config';
@@ -39,7 +30,7 @@ export default () => {
         .createUserWithEmailAndPassword(email, senha)
         .then(credential => {
           const user = credential.user;
-          navigation.navigate('MainTab');
+          navigation.navigate('Colecoes');
         })
         .catch(erro => {
           console.log(erro);
@@ -67,12 +58,17 @@ export default () => {
             <Texto>E-mail</Texto>
             <TextInput  
             style={styles.input}
-            placeholder="fulano@teste.com"/>
+            placeholder="fulano@teste.com"
+            value={email}
+            onChangeText={t => setEmail(t)}/>
         </AreaInputLogin>
 
         <AreaInputLogin>
             <Texto>Senha</Texto>
-            <TextInput style={styles.input} placeholder="******"/>
+            <TextInput style={styles.input} placeholder="******"
+            value={senha}
+            onChangeText={t => setSenha(t)}
+            password={true}/>
             <TouchableOpacity style={styles.eye}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
@@ -80,7 +76,10 @@ export default () => {
 
         <AreaInputLogin>
             <Texto>Repetir senha</Texto>
-            <TextInput style={styles.input2} placeholder="******"/>
+            <TextInput style={styles.input2} placeholder="******"
+            value={senha}
+            onChangeText={t => setSenha(t)}
+            password={true}/>
             <TouchableOpacity style={styles.eye}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
@@ -90,7 +89,7 @@ export default () => {
         Senha não confere
       </TextoSenha>
         </InputArea>
-        <BotaoCustomizado onPress={handleMessageButtonClick}>
+        <BotaoCustomizado onPress={handleLoginClick}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
       </AreaInput>

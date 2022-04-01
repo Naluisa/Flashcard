@@ -21,29 +21,30 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 export default () => {
   const navigation = useNavigation();
 
-  const [email, onChangeEmail] = React.useState(null);
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
   const handleLoginClick = () => {
     if (email !== '' && senha !== '') {
-      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
-        console.log('userCredential', userCredential);
-        AsyncStorage.setItem('email', email);
-        AsyncStorage.setItem(
-          '@SalvaLogin',
-          JSON.stringify(userCredential),
-        ).then(() => {
-          const user = userCredential.user;
-          console.log(user);
-          navigation.navigate('MainTab');
+      auth
+        .signInWithEmailAndPassword(email, senha)
+        .then(credential => {
+          const user = credential.user;
+          navigation.navigate('Colecoes');
+        })
+        .catch(erro => {
+          console.log(erro);
+          console.warn(erro);
         });
-      });
     } else {
-      navigation.navigate('MainTab');
+      console.warn('deu erro');
     }
   };
 
   const handleMessageButtonClick = () => {
-    navigation.navigate('Cadastro');
+    navigation.reset({
+        routes: [{name: 'Cadastro'}]
+    });
 }
   return ( 
     <Container>
@@ -55,14 +56,17 @@ export default () => {
             <Texto>E-mail</Texto>
             <TextInput  
             style={styles.input}
-            onChangeEmail={onChangeEmail}
+             onChangeText={t=>setEmail(t)}
             value={email}
             placeholder="fulano@teste.com"/>
         </AreaInputLogin>
 
         <AreaInputLogin>
             <Texto>Senha</Texto>
-            <TextInput style={styles.input} placeholder="******"/>
+            <TextInput style={styles.input} placeholder="******"
+            value={senha}
+            onChangeText={t=>setSenha(t)}
+            password={true}/>
             <TouchableOpacity style={styles.eye}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
@@ -71,12 +75,12 @@ export default () => {
         <TextoNegritoMensagemBotao>Esqueci a senha</TextoNegritoMensagemBotao>
         </TouchableOpacity>  
 
-          <BotaoCustomizado >
+          <BotaoCustomizado onPress={handleLoginClick}>
           <TextoBotaoCustomizado>ENTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
 
-        <BotaoCustomizado2>
-          <TextoBotaoCustomizado onPress={handleMessageButtonClick}>CADASTRE-SE</TextoBotaoCustomizado>
+        <BotaoCustomizado2 onPress={handleMessageButtonClick}>
+          <TextoBotaoCustomizado>CADASTRE-SE</TextoBotaoCustomizado>
         </BotaoCustomizado2>
       </AreaInput>
     </Container>

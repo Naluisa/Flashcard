@@ -11,8 +11,13 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen name="Minhas coleções" component={MainStack} screenOptions={{headerShown: false}}/>
+    <Drawer.Navigator initialRouteName="Cadastro"
+    >
+      <Drawer.Screen name="Minhas coleções" component={MainStack}screenOptions={{
+      drawerStyle: {
+        activeTintColor: '#e91e63',
+        width: 240,
+      },}}/>
       <Drawer.Screen name="Logout" component={LogTeste} />
     </Drawer.Navigator>
   );
