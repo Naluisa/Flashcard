@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
-import {Image, TouchableOpacity, StyleSheet,TextInput} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet,TextInput, View} from 'react-native';
 
 import {
   Container,
@@ -23,22 +23,32 @@ export default () => {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [repeteSenha, setRepeteSenha] = useState('');
+  const [erroCadastro, setErroCadastro] = useState('');
+  const [mostrarSenha, setMostrarSenha] = useState(true);
 
   const handleLoginClick = () => {
     if (email !== '' && senha !== '') {
       auth
-        .createUserWithEmailAndPassword(email, senha)
+        .createUserWithEmailAndPassword(email, senha, repeteSenha)
         .then(credential => {
           const user = credential.user;
+          if(user.senha == user.repeteSenha )
           navigation.navigate('Colecoes');
-        })
+        }) 
         .catch(erro => {
+          setErroCadastro(true);
+          let errorCode = erro.code;
+          let errorMessage = erro.errorMessage;
+          
           console.log(erro);
           console.warn(erro);
         });
     } else {
       console.warn('deu erro');
-    }
+    
+    
+  }
   };
   const handleMessageButtonClick = () => {
     navigation.navigate('LogTeste');
@@ -68,8 +78,8 @@ export default () => {
             <TextInput style={styles.input} placeholder="******"
             value={senha}
             onChangeText={t => setSenha(t)}
-            password={true}/>
-            <TouchableOpacity style={styles.eye}>
+            secureTextEntry={mostrarSenha}/>
+            <TouchableOpacity style={styles.eye} onPress={() => setMostrarSenha(!mostrarSenha)}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
         </AreaInputLogin>
@@ -77,17 +87,22 @@ export default () => {
         <AreaInputLogin>
             <Texto>Repetir senha</Texto>
             <TextInput style={styles.input2} placeholder="******"
-            value={senha}
-            onChangeText={t => setSenha(t)}
-            password={true}/>
-            <TouchableOpacity style={styles.eye}>
+            value={repeteSenha}
+            onChangeText={t => setRepeteSenha(t)}
+            secureTextEntry={mostrarSenha}/>
+            <TouchableOpacity style={styles.eye} onPress={() => setMostrarSenha(!mostrarSenha)}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
 
         </AreaInputLogin>
-          <TextoSenha>
-        Senha não confere
-      </TextoSenha>
+
+        {erroCadastro === true ? (
+            <TextoSenha>
+              Senha não confere
+            </TextoSenha>
+          ) : (
+            <View />
+          )}
         </InputArea>
         <BotaoCustomizado onPress={handleLoginClick}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>

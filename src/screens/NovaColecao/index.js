@@ -9,7 +9,7 @@ import {
   TextoNegritoMensagemBotao,
 } from '../NovaColecao/styles';
 
-import {Image, TouchableOpacity, StyleSheet,TextInput} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet,TextInput, Keyboard, Alert} from 'react-native';
 
 import styled from 'styled-components/native';
 
@@ -49,40 +49,12 @@ export default () => {
     });
   };
 
-  const styles = StyleSheet.create({
-    buttonFacebookStyle: {
-      backgroundColor: '#FFFFFF',
-      marginBottom: 20,
-      padding: 15,
-      flexDirection: 'row',
-    },
-    buttonFacebookStyle2: {
-      backgroundColor: '#FFFFFF',
-      marginBottom: 20,
-      padding: 15,
-      flexDirection: 'row',
-    },
-    imagem:{
-      marginLeft: 70,
-      marginRight: 'auto',
-    },
-    input: {
-      width: 270,
-  height: 60,
-  color: '#000000',
-  marginLeft: -90,
-  marginTop: 20,
-  fontSize: 14,
-    },
-    input2: {
-      width: 270,
-  height: 70,
-  color: '#000000',
-  marginLeft: -60,
-  marginTop: -8,
-  fontSize: 14,
-    },
-  });
+  cadastrar = async () =>{
+    try{
+      await AsyncStorage.setItem()
+    }catch{}
+  }
+  
   return (
     <Container>
       <AreaInput>
@@ -120,6 +92,41 @@ export default () => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonFacebookStyle: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: 20,
+    padding: 15,
+    flexDirection: 'row',
+  },
+  buttonFacebookStyle2: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: 20,
+    padding: 15,
+    flexDirection: 'row',
+  },
+  imagem:{
+    marginLeft: 70,
+    marginRight: 'auto',
+  },
+  input: {
+    width: 270,
+height: 60,
+color: '#000000',
+marginLeft: -90,
+marginTop: 20,
+fontSize: 14,
+  },
+  input2: {
+    width: 270,
+height: 70,
+color: '#000000',
+marginLeft: -60,
+marginTop: -8,
+fontSize: 14,
+  },
+});
 
 const AreaInputLogin = styled.View`
     width: 100%;

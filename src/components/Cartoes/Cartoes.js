@@ -15,6 +15,124 @@ import {
 } from 'react-native';
 import { initialWindowMetrics } from 'react-native-safe-area-context';
 
+
+export default ({}) => {
+  const navigation = useNavigation();
+
+  return (
+    
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+
+    <TouchableOpacity style={styles.buttonFiltro}
+          activeOpacity={0.5}>
+      <TextoFiltro >Filtro</TextoFiltro>
+
+      <TextInput style={styles.input}/>
+
+    </TouchableOpacity>
+
+      <BotaoCustomizado2 >
+          <TextoBotaoCustomizado>Jogar!</TextoBotaoCustomizado>
+        </BotaoCustomizado2>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MainTab')}
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <TextoTituloFrente >Frente</TextoTituloFrente>
+          <TextoTituloVerso >Verso</TextoTituloVerso>
+
+
+          <TextoFrente>Árvore</TextoFrente>
+          <TextoVerso >Tree</TextoVerso>
+          <TouchableOpacity>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
+        </TouchableOpacity>
+
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MainTab')}
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <TextoTituloFrente >Frente</TextoTituloFrente>
+          <TextoTituloVerso >Verso</TextoTituloVerso>
+
+
+          <TextoFrente>Janela</TextoFrente>
+          <TextoVerso >Window</TextoVerso>
+          <TouchableOpacity>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MainTab')}
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <TextoTituloFrente >Frente</TextoTituloFrente>
+          <TextoTituloVerso >Verso</TextoTituloVerso>
+
+
+          <TextoFrente>Porta</TextoFrente>
+          <TextoVerso >Door</TextoVerso>
+          <TouchableOpacity>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MainTab')}
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <TextoTituloFrente >Frente</TextoTituloFrente>
+          <TextoTituloVerso >Verso</TextoTituloVerso>
+
+
+          <TextoFrente>Parede</TextoFrente>
+          <TextoVerso >Wall</TextoVerso>
+          <TouchableOpacity>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('MainTab')}
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <TextoTituloFrente >Frente</TextoTituloFrente>
+          <TextoTituloVerso >Verso</TextoTituloVerso>
+
+
+          <TextoFrente>Chão</TextoFrente>
+          <TextoVerso >Floor</TextoVerso>
+          <TouchableOpacity>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
+
+          </TouchableOpacity>
+        </TouchableOpacity>
+       
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.touchableOpacityStyle}
+          onPress={() => navigation.navigate('NovoCartao')}>
+          <Image
+            source={require('../../assets/plus.jpg')}
+            style={styles.floatingButtonStyle}
+          />
+        </TouchableOpacity>
+       
+      </View>
+    </SafeAreaView>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -133,119 +251,3 @@ ImagemTexto: {
 },
 });
 
-export default ({}) => {
-  const navigation = useNavigation();
-
-  return (
-    
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-
-    <TouchableOpacity style={styles.buttonFiltro}
-          activeOpacity={0.5}>
-      <TextoFiltro >Filtro</TextoFiltro>
-
-      <TextInput style={styles.input}/>
-
-    </TouchableOpacity>
-
-      <BotaoCustomizado2 >
-          <TextoBotaoCustomizado>Jogar!</TextoBotaoCustomizado>
-        </BotaoCustomizado2>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoTituloFrente >Frente</TextoTituloFrente>
-          <TextoTituloVerso >Verso</TextoTituloVerso>
-
-
-          <TextoFrente>Árvore</TextoFrente>
-          <TextoVerso >Tree</TextoVerso>
-          <TouchableOpacity>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
-
-          </TouchableOpacity>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoTituloFrente >Frente</TextoTituloFrente>
-          <TextoTituloVerso >Verso</TextoTituloVerso>
-
-
-          <TextoFrente>Janela</TextoFrente>
-          <TextoVerso >Window</TextoVerso>
-          <TouchableOpacity>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
-
-          </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoTituloFrente >Frente</TextoTituloFrente>
-          <TextoTituloVerso >Verso</TextoTituloVerso>
-
-
-          <TextoFrente>Porta</TextoFrente>
-          <TextoVerso >Door</TextoVerso>
-          <TouchableOpacity>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
-
-          </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoTituloFrente >Frente</TextoTituloFrente>
-          <TextoTituloVerso >Verso</TextoTituloVerso>
-
-
-          <TextoFrente>Parede</TextoFrente>
-          <TextoVerso >Wall</TextoVerso>
-          <TouchableOpacity>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
-
-          </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoTituloFrente >Frente</TextoTituloFrente>
-          <TextoTituloVerso >Verso</TextoTituloVerso>
-
-
-          <TextoFrente>Chão</TextoFrente>
-          <TextoVerso >Floor</TextoVerso>
-          <TouchableOpacity>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
-
-          </TouchableOpacity>
-        </TouchableOpacity>
-       
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.touchableOpacityStyle}
-          onPress={() => navigation.navigate('NovoCartao')}>
-          <Image
-            source={require('../../assets/plus.jpg')}
-            style={styles.floatingButtonStyle}
-          />
-        </TouchableOpacity>
-       
-      </View>
-    </SafeAreaView>
-  );
-};

@@ -10,82 +10,6 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#332E56',
-  },
-  buttonFacebookStyle: {
-    backgroundColor: '#FFFFFF',
-    marginBottom: 20,
-    borderRadius: 20,
-    padding: 15,
-    flexDirection: 'row',
-  },
-  buttonImageIconStyle: {
-    padding: 10,
-    margin: 5,
-    height: 70,
-    width: 70,
-    resizeMode: 'stretch',
-  },
-  buttonEdit: {
-    padding: 10,
-    margin: 5,
-    height: 30,
-    width: 30,
-    marginLeft: 60,
-    marginTop: -5,
-    resizeMode: 'stretch',
-  },
-  buttonExclui: {
-    padding: 10,
-    margin: 5,
-    height: 26,
-    width: 26,
-    marginLeft: 60,
-    marginTop: 20,
-    resizeMode: 'stretch',
-  },
-  buttonTextStyle: {
-    color: '#27ACA7',
-    marginBottom: 4,
-    marginLeft: 20,
-    fontSize: 32,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-  },
-  TextoCapac: {
-    color: 'black',
-    marginBottom: 4,
-  },
-  buttonIconSeparatorStyle: {
-    backgroundColor: 'black',
-    width: 1,
-    height: 50,
-  },
-
-  touchableOpacityStyle: {
-    position: 'absolute',
-    width: 50,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    right: 30,
-    bottom: 30,
-  },
-  floatingButtonStyle: {
-    resizeMode: 'contain',
-    width: 70,
-    height: 70,
-    backgroundColor: '#7A71AF'
-  },
-  ImagemTexto: {
-    marginRight: -5,
-  },
-  
-});
-
 export default ({}) => {
   const navigation = useNavigation();
 
@@ -95,6 +19,7 @@ export default ({}) => {
   const BotaoAdiciona = () => {
     navigation.navigate('EditarColecao');
 }
+
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -207,3 +132,79 @@ export default ({}) => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#332E56',
+  },
+  buttonFacebookStyle: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: 20,
+    borderRadius: 20,
+    padding: 15,
+    flexDirection: 'row',
+  },
+  buttonImageIconStyle: {
+    padding: 10,
+    margin: 5,
+    height: 70,
+    width: 70,
+    resizeMode: 'stretch',
+  },
+  buttonEdit: {
+    padding: 10,
+    margin: 5,
+    height: 30,
+    width: 30,
+    marginLeft: 60,
+    marginTop: -5,
+    resizeMode: 'stretch',
+  },
+  buttonExclui: {
+    padding: 10,
+    margin: 5,
+    height: 26,
+    width: 26,
+    marginLeft: 60,
+    marginTop: 20,
+    resizeMode: 'stretch',
+  },
+  buttonTextStyle: {
+    color: '#27ACA7',
+    marginBottom: 4,
+    marginLeft: 20,
+    fontSize: 32,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+  },
+  TextoCapac: {
+    color: 'black',
+    marginBottom: 4,
+  },
+  buttonIconSeparatorStyle: {
+    backgroundColor: 'black',
+    width: 1,
+    height: 50,
+  },
+
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 70,
+    height: 70,
+    backgroundColor: '#7A71AF'
+  },
+  ImagemTexto: {
+    marginRight: -5,
+  },
+  
+});

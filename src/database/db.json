@@ -1,0 +1,24 @@
+{
+    "Colecoes": [
+        {
+            "id": 1,
+            "nome": "Objetos"
+        },
+        {
+            "id": 2,
+            "nome": "Cores"
+        },
+        {
+            "id": 3,
+            "nome": "Animais"
+        },
+        {
+            "id": 4,
+            "nome": "Adjetivos"
+        },
+        {
+            "id": 5,
+            "nome": "Pronomes"
+        }
+    ]
+}

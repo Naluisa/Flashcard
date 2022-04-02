@@ -11,6 +11,28 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
+
+export default ({}) => {
+  const navigation = useNavigation();
+
+  return (
+    <SafeAreaView style={{flex: 1}}>
+    <View style={styles.container}>
+    <TouchableOpacity
+          onPress={() => navigation.navigate('MainTab')}
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <Text style={styles.buttonTextStyle}>Frente</Text>
+          <Text style={styles.buttonTextStyle}>Verso</Text>
+
+
+        </TouchableOpacity>
+
+      </View>
+    </SafeAreaView>
+  );
+};
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -57,23 +79,3 @@ const Input = styled.TextInput`
   height: 10px;
 `;
 
-export default ({}) => {
-  const navigation = useNavigation();
-
-  return (
-    <SafeAreaView style={{flex: 1}}>
-    <View style={styles.container}>
-    <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Text style={styles.buttonTextStyle}>Frente</Text>
-          <Text style={styles.buttonTextStyle}>Verso</Text>
-
-
-        </TouchableOpacity>
-
-      </View>
-    </SafeAreaView>
-  );
-};

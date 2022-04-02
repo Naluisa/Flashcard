@@ -9,9 +9,10 @@ import {
   TextoBotaoCustomizado,
   TextoNegritoMensagemBotao,
   Imagem,
-  Text
+  Text,
+  TextoSenha
 } from '../LogTeste/styles';
-import {Image, TextInput,StyleSheet} from 'react-native';
+import {Image, TextInput,StyleSheet, View} from 'react-native';
 import styled from 'styled-components/native';
 
 
@@ -23,22 +24,26 @@ export default () => {
 
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
+  const [erroLogin, setErroLogin] = useState("");
+  const [mostrarSenha, setMostrarSenha] = useState(true);
+
 
   const handleLoginClick = () => {
     if (email !== '' && senha !== '') {
+
       auth
         .signInWithEmailAndPassword(email, senha)
         .then(credential => {
           const user = credential.user;
+          if(user.email == "admin@email.com" )
           navigation.navigate('Colecoes');
         })
-        .catch(erro => {
-          console.log(erro);
-          console.warn(erro);
+        .catch((erro) => {
+          setErroLogin(true);
+          let errorCode = erro.code;
+          let errorMessage = erro.message;
         });
-    } else {
-      console.warn('deu erro');
-    }
+      }
   };
 
   const handleMessageButtonClick = () => {
@@ -66,14 +71,21 @@ export default () => {
             <TextInput style={styles.input} placeholder="******"
             value={senha}
             onChangeText={t=>setSenha(t)}
-            password={true}/>
-            <TouchableOpacity style={styles.eye}>
+            secureTextEntry={mostrarSenha}/>
+            <TouchableOpacity style={styles.eye} onPress={() => setMostrarSenha(!mostrarSenha)}>
               <Image class="eye" source={require('../../assets/eye.png')} />
             </TouchableOpacity>
         </AreaInputLogin>
         <TouchableOpacity style={styles.EsqueceuSenha}>
         <TextoNegritoMensagemBotao>Esqueci a senha</TextoNegritoMensagemBotao>
         </TouchableOpacity>  
+
+        {erroLogin === true ? (
+            <TextoSenha>E-mail inválido</TextoSenha>
+          ) : (
+            <View />
+          )}
+        
 
           <BotaoCustomizado onPress={handleLoginClick}>
           <TextoBotaoCustomizado>ENTRAR</TextoBotaoCustomizado>

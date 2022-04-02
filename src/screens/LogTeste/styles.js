@@ -69,3 +69,10 @@ export const Text = styled.Text`
   margin-right: auto;
   margin-bottom: 60px;
 `;
+
+export const TextoSenha = styled.Text`
+font-size: 13px;
+  color: #FF5353;
+  margin-top: -10px;
+  margin-left: 15px;
+`;
