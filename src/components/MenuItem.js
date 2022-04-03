@@ -1,6 +1,6 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
-
+import styled from 'styled-components/native';
 import {
   SafeAreaView,
   StyleSheet,
@@ -9,8 +9,9 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
+import { padding } from '@mui/system';
 
-export default ({}) => {
+export default ({nome, }) => {
   const navigation = useNavigation();
 
   const handleMessageButtonClick = () => {
@@ -21,119 +22,67 @@ export default ({}) => {
 }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
         <TouchableOpacity
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
+
+<View style={styles.titulo}>
           <Image
             source={require('../assets/bola.png')}
             style={styles.buttonImageIconStyle}
           />
-          <Text style={styles.buttonTextStyle}>Objetos</Text>
-          <TouchableOpacity >
-            <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}>
+
+          <View style={styles.texto}>
+            <Texto style={styles.buttonTextStyle}>{nome}</Texto>
+          </View>
+          </View>
+          <TouchableOpacity>
+           {/*  <View style={styles.botoes}>
+            <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}  style={styles.icones1}>
             <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('LogTeste')} >
+            </TouchableOpacity >
+            <TouchableOpacity onPress={() => navigation.navigate('LogTeste')} style={styles.icones2}>
             <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui}/>
             </TouchableOpacity>
+            </View> */}
           </TouchableOpacity>
 
         </TouchableOpacity>
 
-        <TouchableOpacity
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image
-            source={require('../assets/Colors.png')}
-            style={styles.buttonImageIconStyle}
-          />
-          <Text style={styles.buttonTextStyle}>Cores</Text>
-
-          <TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-            </TouchableOpacity>
-          </TouchableOpacity>
         
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Favorites')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image
-            source={require('../assets/urso.png')}
-            style={styles.buttonImageIconStyle}
-          />
-          <Text style={styles.buttonTextStyle}>Animais</Text>
-          
-          <TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-            </TouchableOpacity>
-          </TouchableOpacity>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Profile')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image
-            source={require('../assets/tree.png')}
-            style={styles.buttonImageIconStyle}
-          />
-          <Text style={styles.buttonTextStyle}>Adjetivos</Text>
-          
-          <TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-            </TouchableOpacity>
-          </TouchableOpacity>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          onPress={() => navigation.navigate('CadastroAmbiente')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image
-            source={require('../assets/seta.png')}
-            style={styles.buttonImageIconStyle}
-          />
-          <Text style={styles.buttonTextStyle}>Pronomes</Text>
-          <TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
-            </TouchableOpacity>
-            <TouchableOpacity>
-            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui} />
-            </TouchableOpacity>
-          </TouchableOpacity>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          activeOpacity={0.7}
-          style={styles.touchableOpacityStyle}
-          onPress={() => navigation.navigate('NovaColecao')}>
-          <Image
-            source={require('../assets/plus.jpg')}
-            style={styles.floatingButtonStyle}
-          />
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
   );
 };
+const Texto = styled.Text`
+color: #27ACA7;
+font-weight: bold;
+font-size: 32;
+margin-top: 33px;
+margin-left: 73px;
+margin-right: -63px;
+padding-right:30px;
+`;
+ 
 
 const styles = StyleSheet.create({
+  botoes:{
+borderWidth:2
+  },
+  titulo:{
+borderWidth:2,
+paddingRight:-30
+  },
+  icones1:{
+    marginLeft:65,  
+    borderWidth:2
+  },
+  icones2:{
+    marginTop:2,
+} ,
+  texto:{
+    borderWidth:2,
+    marginTop:-60,
+    marginLeft:95,
+  },
   container: {
     flex: 1,
     backgroundColor: '#332E56',
@@ -151,14 +100,16 @@ const styles = StyleSheet.create({
     height: 70,
     width: 70,
     resizeMode: 'stretch',
-  },
+    borderWidth:2
+             },
   buttonEdit: {
     padding: 10,
+    paddingLeft: -90,
     margin: 5,
-    height: 30,
-    width: 30,
-    marginLeft: 60,
-    marginTop: -5,
+    height: 25,
+    width: 25,
+    marginLeft: 10,
+    marginTop: -10,
     resizeMode: 'stretch',
   },
   buttonExclui: {
@@ -166,17 +117,17 @@ const styles = StyleSheet.create({
     margin: 5,
     height: 26,
     width: 26,
-    marginLeft: 60,
+    marginLeft: 70,
     marginTop: 20,
     resizeMode: 'stretch',
   },
   buttonTextStyle: {
     color: '#27ACA7',
-    marginBottom: 4,
-    marginLeft: 20,
     fontSize: 32,
     fontWeight: 'bold',
-    alignSelf: 'center',
+    marginLeft:-5,
+    marginTop:-5,
+marginRight:10
   },
   TextoCapac: {
     color: 'black',

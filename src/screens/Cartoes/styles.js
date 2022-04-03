@@ -59,4 +59,33 @@ export const BotaoCustomizado = styled.TouchableOpacity`
     margin-top: 250px;
 
 `;
+export const View = styled.View`
+    margin-bottom: -50px;
+`;
 
+export const TextoFiltro = styled.Text`
+    font-size: 12px;
+    color: #6200EE;
+    margin-top: -10px;
+`;
+
+
+export const BotaoCustomizado2 = styled.TouchableOpacity`
+width: 130px;
+    height: 46px;
+    background-color:#57966A;
+    justify-content: center;
+    align-items: center;
+    borderWidth:1;
+    marginTop: 15px;
+    marginLeft: 110;
+    marginBottom: 25;
+    border-radius: 5px;
+
+`;
+export const TextoBotaoCustomizado = styled.Text`
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+
+`;

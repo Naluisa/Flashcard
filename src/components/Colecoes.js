@@ -1,14 +1,36 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
 
 import {
   SafeAreaView,
   StyleSheet,
   View,
-  Text,
-  Image,
   TouchableOpacity,
 } from 'react-native';
+
+
+
+export default ({Image, Text,}) => {
+
+  return (
+    <SafeAreaView style={{flex: 1}}>
+      <View style={styles.container}>
+        <TouchableOpacity
+          style={styles.buttonFacebookStyle}
+          activeOpacity={0.5}>
+          <Image style={styles.buttonImageIconStyle} />
+          <Text style={styles.buttonTextStyle}></Text>
+
+          <TouchableOpacity>
+            <Image />
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Image />
+          </TouchableOpacity>
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
+  );
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -47,26 +69,3 @@ const styles = StyleSheet.create({
     height: 50,
   },
 });
-
-export default ({Image, Text,}) => {
-
-  return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={styles.container}>
-        <TouchableOpacity
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <Image style={styles.buttonImageIconStyle} />
-          <Text style={styles.buttonTextStyle}></Text>
-
-          <TouchableOpacity>
-            <Image />
-          </TouchableOpacity>
-          <TouchableOpacity>
-            <Image />
-          </TouchableOpacity>
-        </TouchableOpacity>
-      </View>
-    </SafeAreaView>
-  );
-};
