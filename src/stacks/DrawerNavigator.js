@@ -22,19 +22,43 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
   return (
       <Drawer.Navigator initialRouteName="NovoCartao">
-        <Drawer.Screen name="Cartoes" component={Cartoes} />
-        <Drawer.Screen name="Jogar4" component={Jogar4}/>
-        <Drawer.Screen name="Preload" component={Preload}/>
-        <Drawer.Screen name="Jogar3" component={Jogar3}/>
-        <Drawer.Screen name="Jogar2" component={Jogar2}/>
-        <Drawer.Screen name="Jogar" component={Jogar}/>
-        <Drawer.Screen name="NovoCartao" component={NovoCartao}/>
-        <Drawer.Screen name="Colecoes" component={Colecoes} screenOptions={{headerTitle: "Cao"}}/>
-        <Drawer.Screen name="ExcluirCartao" component={ExcluirCartao}/>
-        <Drawer.Screen name="EditarCartao" component={EditarCartao}/>
-        <Drawer.Screen name="ExcluirColecao" component={ExcluirColecao}/>
-        <Drawer.Screen name="EditarColecao" component={EditarColecao}/>
-        <Drawer.Screen name="NovaColecao" component={NovaColecao}/>
+        <Drawer.Screen name="Cartoes" component={Cartoes} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="Jogar4" component={Jogar4} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="Preload" component={Preload}options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="Jogar3" component={Jogar3} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="Jogar2" component={Jogar2} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="Jogar" component={Jogar} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="NovoCartao" component={NovoCartao} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="Colecoes" component={Colecoes}/>
+        <Drawer.Screen name="ExcluirCartao" component={ExcluirCartao} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="EditarCartao" component={EditarCartao} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="ExcluirColecao" component={ExcluirColecao} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="EditarColecao" component={EditarColecao} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
+        <Drawer.Screen name="NovaColecao" component={NovaColecao} options={{
+                  drawerItemStyle: { display: 'none' }
+        }}/>
         <Drawer.Screen name="Logout" component={LogTeste}/>
       </Drawer.Navigator>
   );
