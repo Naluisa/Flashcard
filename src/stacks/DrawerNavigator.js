@@ -21,7 +21,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
-      <Drawer.Navigator initialRouteName="Cartoes">
+      <Drawer.Navigator initialRouteName="NovoCartao">
         <Drawer.Screen name="Cartoes" component={Cartoes} />
         <Drawer.Screen name="Jogar4" component={Jogar4}/>
         <Drawer.Screen name="Preload" component={Preload}/>

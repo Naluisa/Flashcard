@@ -17,6 +17,8 @@ import db from '../../services/config';
 import IconeOlho from '../../assets/eye.svg';
 import { black } from 'react-native-paper/lib/typescript/styles/colors';
 import { block } from 'react-native-reanimated';
+import AdicionaCartao from '../../components/AdicionaCartao';
+
 export default () => {
 
   const navigation = useNavigation();
@@ -41,31 +43,7 @@ export default () => {
           Preencha os dados da frente e do verso do flashcard
         </TextoNegritoMensagemBotao>
 
-<View>
-    <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoCartao>Frente</TextoCartao>
-          <TextInput style={styles.input}
-                  placeholder="Digite Aqui"
-                  value={frente}
-                  onChangeText={t => setFrente(t)}
-          />
-    </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle2}
-          activeOpacity={0.5}>
-          <TextoCartao>Verso</TextoCartao>
-          <TextInput
-                  style={styles.input}
-                  placeholder="Digite Aqui"
-                  value={verso}
-                  onChangeText={t => setVerso(t)}
-                  />
-        </TouchableOpacity>
-        </View>
+        <AdicionaCartao/>
 
           <BotaoCustomizado onPress={NovoCartao}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
