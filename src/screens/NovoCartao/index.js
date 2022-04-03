@@ -11,7 +11,7 @@ import {Container, Scroller, HeaderArea, HeaderTitle, ListArea,TextoNegritoMensa
     TextInput, 
   } from 'react-native';
 
-import MenuItem from '../../components/MenuItem';
+import MenuItem from '../../components/Colecoes/MenuItem';
 import Cartao from '../../components/Cartao';
 import db from '../../services/config';
 import IconeOlho from '../../assets/eye.svg';

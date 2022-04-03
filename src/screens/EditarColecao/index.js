@@ -16,6 +16,7 @@ import styled from 'styled-components/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {auth} from '../../services/config';
+import AdicionaCartao from '../../components/AdicionaCartao';
 
 export default () => {
   
@@ -96,18 +97,7 @@ export default () => {
             style={styles.input}/>
         </AreaInputLogin>
 
-        <TouchableOpacity style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Descrição</Texto2>
-            <TextInput  
-            style={styles.input2}/>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Imagem</Texto2>
-            <Image style={styles.imagem} source={require('../../assets/mais.png')} />
-        </TouchableOpacity>
+        <AdicionaCartao/>
         
 
         <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>

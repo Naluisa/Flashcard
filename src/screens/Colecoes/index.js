@@ -10,7 +10,7 @@ import {
   Image
 } from 'react-native';
 
-import MenuItem from '../../components/MenuItem';
+import MenuItem from '../../components/Colecoes/MenuItem';
 
 export default () => {
   const [visible, setVisible] = React.useState(true);

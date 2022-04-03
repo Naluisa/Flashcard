@@ -1,5 +1,7 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
+import {Texto} from './styles';
+
 import styled from 'styled-components/native';
 import {
   SafeAreaView,
@@ -28,7 +30,7 @@ export default ({nome, }) => {
 
 <View style={styles.titulo}>
           <Image
-            source={require('../assets/bola.png')}
+            source={require('../../assets/bola.png')}
             style={styles.buttonImageIconStyle}
           />
 
@@ -37,14 +39,14 @@ export default ({nome, }) => {
           </View>
           </View>
           <TouchableOpacity>
-           {/*  <View style={styles.botoes}>
+             <View style={styles.botoes }>
             <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}  style={styles.icones1}>
-            <Image class="edit" source={require('../assets/edit.png')} style={styles.buttonEdit}/>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
             </TouchableOpacity >
             <TouchableOpacity onPress={() => navigation.navigate('LogTeste')} style={styles.icones2}>
-            <Image class="exclui" source={require('../assets/excluir.png')} style={styles.buttonExclui}/>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui}/>
             </TouchableOpacity>
-            </View> */}
+            </View> 
           </TouchableOpacity>
 
         </TouchableOpacity>
@@ -52,34 +54,20 @@ export default ({nome, }) => {
         
   );
 };
-const Texto = styled.Text`
-color: #27ACA7;
-font-weight: bold;
-font-size: 32;
-margin-top: 33px;
-margin-left: 73px;
-margin-right: -63px;
-padding-right:30px;
-`;
- 
 
 const styles = StyleSheet.create({
   botoes:{
-borderWidth:2
+flexDirection: 'column'
   },
   titulo:{
-borderWidth:2,
-paddingRight:-30
   },
   icones1:{
-    marginLeft:65,  
-    borderWidth:2
+    marginLeft:65, 
   },
   icones2:{
     marginTop:2,
 } ,
   texto:{
-    borderWidth:2,
     marginTop:-60,
     marginLeft:95,
   },
@@ -100,8 +88,9 @@ paddingRight:-30
     height: 70,
     width: 70,
     resizeMode: 'stretch',
-    borderWidth:2
-             },
+    borderWidth:2,
+    marginBottom:-5
+  },
   buttonEdit: {
     padding: 10,
     paddingLeft: -90,
@@ -126,7 +115,7 @@ paddingRight:-30
     fontSize: 32,
     fontWeight: 'bold',
     marginLeft:-5,
-    marginTop:-5,
+    marginTop:10,
 marginRight:10
   },
   TextoCapac: {

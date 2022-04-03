@@ -20,10 +20,10 @@ export default () => (
     <Stack.Navigator
         //initialRouteName="Cadastro"
         screenOptions={{
-          headerShown: false
+          headerShown: false,
         }}
     >
-      <Stack.Screen name="mainApp" component={DrawerNavigator}/>
+      <Stack.Screen name="mainApp" component={DrawerNavigator} />
       <Stack.Screen name="LogTeste" component={LogTeste}/>
       <Stack.Screen name="Cadastro" component={Cadastro}/>
     </Stack.Navigator>
