@@ -3,6 +3,7 @@ import {useNavigation} from '@react-navigation/native';
 import {Texto} from './styles';
 
 import styled from 'styled-components/native';
+
 import {
   SafeAreaView,
   StyleSheet,
@@ -11,96 +12,95 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import { padding } from '@mui/system';
 
-export default ({nome, }) => {
+export default ({nome, image}) => {
   const navigation = useNavigation();
 
   const handleMessageButtonClick = () => {
     navigation.navigate('EditarColecao');
-}
+  }
   const BotaoAdiciona = () => {
     navigation.navigate('EditarColecao');
-}
+  }
 
   return (
-        <TouchableOpacity
+      <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
 
-<View style={styles.titulo}>
-          <Image
-            source={require('../../assets/bola.png')}
-            style={styles.buttonImageIconStyle}
-          />
-
-          <View style={styles.texto}>
+        <View style={styles.titulo}>
+           <Image
+                source={image}
+                style={styles.buttonImageIconStyle}
+            />
+   
             <Texto style={styles.buttonTextStyle}>{nome}</Texto>
-          </View>
-          </View>
-          <TouchableOpacity>
-             <View style={styles.botoes }>
-            <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}  style={styles.icones1}>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit}/>
-            </TouchableOpacity >
-            <TouchableOpacity onPress={() => navigation.navigate('LogTeste')} style={styles.icones2}>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui}/>
-            </TouchableOpacity>
-            </View> 
+        
+        </View>
+
+        <View style={styles.botoes}>
+          <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}>
+            <Image class="edit" source={require('../../assets/edit.png')} style={styles.editIcon}/>
           </TouchableOpacity>
 
-        </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('ExcluirColecao')}>
+            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.editIcon}/>
+          </TouchableOpacity>
+        </View>
 
-        
+      </TouchableOpacity>
+
+
   );
 };
 
 const styles = StyleSheet.create({
-  botoes:{
-flexDirection: 'column'
+  botoes: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
-  titulo:{
+
+  titulo: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+    alignItems: 'center',
+    textAlign: 'center',
+
   },
-  icones1:{
-    marginLeft:65, 
-  },
-  icones2:{
-    marginTop:2,
-} ,
-  texto:{
-    marginTop:-60,
-    marginLeft:95,
-  },
+
+
+
   container: {
     flex: 1,
     backgroundColor: '#332E56',
   },
+
   buttonFacebookStyle: {
     backgroundColor: '#FFFFFF',
     marginBottom: 20,
     borderRadius: 20,
     padding: 15,
+    display: 'flex',
     flexDirection: 'row',
+    justifyContent: 'space-between',
+    
   },
+
   buttonImageIconStyle: {
     padding: 10,
-    margin: 5,
     height: 70,
     width: 70,
     resizeMode: 'stretch',
-    borderWidth:2,
-    marginBottom:-5
+
   },
-  buttonEdit: {
-    padding: 10,
-    paddingLeft: -90,
-    margin: 5,
-    height: 25,
-    width: 25,
-    marginLeft: 10,
-    marginTop: -10,
-    resizeMode: 'stretch',
+
+  editIcon: {
+    paddingBottom: 15,
   },
+
+
   buttonExclui: {
     padding: 10,
     margin: 5,
@@ -110,18 +110,17 @@ flexDirection: 'column'
     marginTop: 20,
     resizeMode: 'stretch',
   },
+
   buttonTextStyle: {
-    color: '#27ACA7',
-    fontSize: 32,
-    fontWeight: 'bold',
-    marginLeft:-5,
-    marginTop:10,
-marginRight:10
+    fontSize: 38,
+    paddingLeft: 15,
   },
+
   TextoCapac: {
     color: 'black',
     marginBottom: 4,
   },
+
   buttonIconSeparatorStyle: {
     backgroundColor: 'black',
     width: 1,
@@ -137,14 +136,16 @@ marginRight:10
     right: 30,
     bottom: 30,
   },
+
   floatingButtonStyle: {
     resizeMode: 'contain',
     width: 70,
     height: 70,
     backgroundColor: '#7A71AF'
   },
+
   ImagemTexto: {
     marginRight: -5,
   },
-  
+
 });

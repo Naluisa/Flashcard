@@ -1,6 +1,7 @@
 import React from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {Container, Scroller,ListArea} from './styles';
+import {dataMenu} from '../../mocks/dataMenu';
 
 import {
   SafeAreaView,
@@ -24,22 +25,23 @@ export default () => {
 
           <SafeAreaView style={{flex: 1}}>
             <View style={styles.container}>
+              {dataMenu.map((item) => (
 
-              <MenuItem nome="Objetos" />
-              <MenuItem nome="Cores"/>
-              <MenuItem nome="Animais"/>
-              <MenuItem nome="Adjetivos"/>
-              <MenuItem nome="Pronomes"/>
+                <MenuItem nome={item.name} image={item.imagem} />
+              ))}
 
-            {/*   <TouchableOpacity
-                activeOpacity={0.7}
-                style={styles.touchableOpacityStyle}
-                onPress={() => navigation.navigate('NovaColecao')}>
-                <Image
-                  source={require('../../assets/plus.jpg')}
-                  style={styles.floatingButtonStyle}
-                />
-              </TouchableOpacity> */}
+
+  
+
+<TouchableOpacity
+                                activeOpacity={0.7}
+                                style={styles.touchableOpacityStyle}
+                                onPress={() => navigation.navigate('NovaColecao')}>
+                                <Image
+                                    source={require('../../assets/plus.png')}
+                                    style={styles.floatingButtonStyle}
+                                />
+                            </TouchableOpacity>
 
             </View>
           </SafeAreaView>
@@ -85,6 +87,25 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     width: 1,
     height: 50,
+  },
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 60,
+    height: 60,
+    borderRadius: 5,
+    marginLeft:15
+  },
+  ImagemTexto: {
+    marginRight: -5,
   },
 });
 

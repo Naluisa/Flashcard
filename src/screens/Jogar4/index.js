@@ -50,6 +50,8 @@ export default () => {
           <TextInput style={styles.input}
                   value={frente}
                   onChangeText={t => setFrente(t)}
+                  placeholder="Janela"
+                  placeholderTextColor="#000000"
           />
     </TouchableOpacity>
         <TouchableOpacity
@@ -61,11 +63,13 @@ export default () => {
                   style={styles.input}
                   value={verso}
                   onChangeText={t => setVerso(t)}
+                  placeholder="Window"
+                  placeholderTextColor="#000000"
                   />
         </TouchableOpacity>
         </View>
 
-          <BotaoCustomizado onPress={NovoCartao}>
+          <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
           <TextoBotaoCustomizado>FINALIZAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
 
@@ -110,7 +114,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     alignItems: 'center',
     color: 'black',
-    marginLeft: 5,
+    marginLeft: -5,
     fontSize: 25,
     fontWeight: 'bold',
     width: 170,

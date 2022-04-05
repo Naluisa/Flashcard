@@ -35,7 +35,8 @@ export default () => {
           activeOpacity={0.5}>
           <TextoCartao>Frente</TextoCartao>
           <TextInput style={styles.input}
-                  placeholder="Digite Aqui"
+                  placeholder="Brinquedos"
+                  placeholderTextColor="#000000"
           />
     </TouchableOpacity>
         <TouchableOpacity
@@ -45,7 +46,8 @@ export default () => {
           <TextoCartao>Verso</TextoCartao>
           <TextInput
                   style={styles.input}
-                  placeholder="Digite Aqui"
+                  placeholder="Toys"
+            placeholderTextColor="#000000"
                   />
         </TouchableOpacity>
         </View>
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     alignItems: 'center',
     color: 'black',
-    marginLeft: 10,
+    marginLeft: 25,
     fontSize: 25,
     fontWeight: 'bold',
     width: 170,

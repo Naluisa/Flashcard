@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
   },
   buttonFacebookStyle: {
     backgroundColor: '#FFFFFF',
-    marginBottom: 20,
+    marginBottom: 15,
     borderRadius: 10,
     padding: 15,
     flexDirection: 'row',

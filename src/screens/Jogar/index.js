@@ -49,11 +49,13 @@ export default () => {
           <TextInput style={styles.input}
                   value={frente}
                   onChangeText={t => setFrente(t)}
+                  placeholder="Brinquedo"
+                  placeholderTextColor="#000000"
           />
     </TouchableOpacity>
         </View>
 
-          <BotaoCustomizado onPress={NovoCartao}>
+          <BotaoCustomizado onPress={() => navigation.navigate('Jogar2')}>
           <TextoBotaoCustomizado>VIRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
         </ListArea>

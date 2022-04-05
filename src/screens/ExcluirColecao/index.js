@@ -52,7 +52,7 @@ export default () => {
                   activeOpacity={0.5}>
             <Texto2>Você tem certeza que deseja excluir essa coleção?</Texto2>
             
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
               <Texto3>SIM</Texto3>
             </TouchableOpacity>
 

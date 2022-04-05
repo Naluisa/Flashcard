@@ -12,6 +12,7 @@ import {
 import {Image, TouchableOpacity, StyleSheet,TextInput, Keyboard, Alert} from 'react-native';
 
 import styled from 'styled-components/native';
+import { collection, addDoc } from "firebase/firestore";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -65,14 +66,16 @@ export default () => {
         <AreaInputLogin>
             <Texto>Nome coleção</Texto>
             <TextInput  
-            style={styles.input}/>
+            style={styles.input} placeholder="Objetos"
+            placeholderTextColor="#000000"/>
         </AreaInputLogin>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
                   activeOpacity={0.5}>
             <Texto2>Descrição</Texto2>
-            <TextInput  
-            style={styles.input2}/>
+            <TextInput multiline={true}  
+            style={styles.input2} placeholder="Coleção contendo objetos relacionados à materiais esportivos"
+            placeholderTextColor="#000000"/>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
@@ -116,15 +119,15 @@ height: 60,
 color: '#000000',
 marginLeft: -90,
 marginTop: 20,
-fontSize: 14,
+fontSize: 16,
   },
   input2: {
     width: 270,
 height: 70,
 color: '#000000',
 marginLeft: -60,
-marginTop: -8,
-fontSize: 14,
+marginTop: 2,
+fontSize: 16,
   },
 });
 

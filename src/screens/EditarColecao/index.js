@@ -9,14 +9,15 @@ import {
   TextoNegritoMensagemBotao,
 } from '../NovaColecao/styles';
 
-import {Image, TouchableOpacity, StyleSheet,TextInput} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet,TextInput, Keyboard, Alert} from 'react-native';
 
 import styled from 'styled-components/native';
+import { collection, addDoc } from "firebase/firestore";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {auth} from '../../services/config';
-import AdicionaCartao from '../../components/AdicionaCartao';
+import { db } from "../../services/config";
+import { height } from '@mui/system';
 
 export default () => {
   
@@ -50,40 +51,12 @@ export default () => {
     });
   };
 
-  const styles = StyleSheet.create({
-    buttonFacebookStyle: {
-      backgroundColor: '#FFFFFF',
-      marginBottom: 20,
-      padding: 15,
-      flexDirection: 'row',
-    },
-    buttonFacebookStyle2: {
-      backgroundColor: '#FFFFFF',
-      marginBottom: 20,
-      padding: 15,
-      flexDirection: 'row',
-    },
-    imagem:{
-      marginLeft: 70,
-      marginRight: 'auto',
-    },
-    input: {
-      width: 270,
-  height: 60,
-  color: '#000000',
-  marginLeft: -90,
-  marginTop: 20,
-  fontSize: 14,
-    },
-    input2: {
-      width: 270,
-  height: 70,
-  color: '#000000',
-  marginLeft: -60,
-  marginTop: -8,
-  fontSize: 14,
-    },
-  });
+  cadastrar = async () =>{
+    try{
+      await AsyncStorage.setItem()
+    }catch{}
+  }
+  
   return (
     <Container>
       <AreaInput>
@@ -94,10 +67,23 @@ export default () => {
         <AreaInputLogin>
             <Texto>Nome coleção</Texto>
             <TextInput  
-            style={styles.input}/>
+            style={styles.input} placeholder="Materiais esportivos"
+            placeholderTextColor="#000000"/>
         </AreaInputLogin>
 
-        <AdicionaCartao/>
+        <TouchableOpacity style={styles.buttonFacebookStyle}
+                  activeOpacity={0.5}>
+            <Texto2>Descrição</Texto2>
+            <TextInput multiline={true}
+            style={styles.input2} placeholder="Coleção contendo objetos relacionados à materiais esportivos"
+            placeholderTextColor="#000000"/>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.buttonFacebookStyle}
+                  activeOpacity={0.5}>
+            <Texto2>Imagem</Texto2>
+            <Image style={styles.imagem} source={require('../../assets/bola.png')} />
+        </TouchableOpacity>
         
 
         <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
@@ -110,6 +96,45 @@ export default () => {
     </Container>
   );
 };
+
+const styles = StyleSheet.create({
+  buttonFacebookStyle: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: 20,
+    padding: 15,
+    flexDirection: 'row',
+  },
+  buttonFacebookStyle2: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: 20,
+    padding: 15,
+    flexDirection: 'row',
+  },
+  imagem:{
+    marginLeft: 50,
+    marginTop: 20,
+    marginRight: 'auto',
+    width: 90,
+    height:90
+  },
+  input: {
+    width: 270,
+height: 60,
+color: '#000000',
+marginLeft: -90,
+marginTop: 20,
+fontSize: 15,
+  },
+  input2: {
+    width: 270,
+height: 70,
+color: '#000000',
+marginLeft: -60,
+marginTop: 2,
+fontSize: 15,
+
+  },
+});
 
 const AreaInputLogin = styled.View`
     width: 100%;

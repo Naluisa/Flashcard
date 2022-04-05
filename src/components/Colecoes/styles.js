@@ -93,8 +93,6 @@ export const Texto = styled.Text`
   color: #27ACA7;
   font-size: 22;
   font-weight: bold;
-  margin-top: 55px;
-  margin-left: -175px;
   padding-Right: 20px;
 `;
 export const TextoTituloVerso = styled.Text`

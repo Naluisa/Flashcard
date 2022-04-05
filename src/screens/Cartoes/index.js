@@ -30,7 +30,7 @@ export default () => {
                                 <TextInput style={styles.input}/>
                             </TouchableOpacity>
 
-                            <BotaoCustomizado2 >
+                            <BotaoCustomizado2 onPress={() => navigation.navigate('Jogar')}>
                                 <TextoBotaoCustomizado>Jogar!</TextoBotaoCustomizado>
                             </BotaoCustomizado2>
 
@@ -46,7 +46,7 @@ export default () => {
                                 style={styles.touchableOpacityStyle}
                                 onPress={() => navigation.navigate('NovoCartao')}>
                                 <Image
-                                    source={require('../../assets/plus.jpg')}
+                                    source={require('../../assets/plus.png')}
                                     style={styles.floatingButtonStyle}
                                 />
                             </TouchableOpacity>
@@ -168,9 +168,10 @@ const styles = StyleSheet.create({
   },
   floatingButtonStyle: {
     resizeMode: 'contain',
-    width: 70,
-    height: 70,
-    backgroundColor: '#7A71AF'
+    width: 55,
+    height: 55,
+    marginLeft:45,
+    marginTop:-85
   },
   ImagemTexto: {
     marginRight: -5,

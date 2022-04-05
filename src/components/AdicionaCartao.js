@@ -25,22 +25,22 @@ export default ({placeholder }) => {
   return(
 <View>
     <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
       <TextoCartao>Frente</TextoCartao>
       <TextInput style={styles.input}
-        placeholder="Digite Aqui"
+        placeholder="Brinquedo"
+        placeholderTextColor="#000000"
       />
     </TouchableOpacity>
     <TouchableOpacity
-      onPress={() => navigation.navigate('MainTab')}
       style={styles.buttonFacebookStyle2}
       activeOpacity={0.5}>
       <TextoCartao>Verso</TextoCartao>
       <TextInput
         style={styles.input}
-        placeholder="Digite Aqui"
+        placeholder="Toy."
+            placeholderTextColor="#000000"
         />
       </TouchableOpacity>
 </View>
@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     alignItems: 'center',
     color: 'black',
-    marginLeft: 10,
+    marginLeft: 25 ,
     fontSize: 25,
     fontWeight: 'bold',
     width: 170,

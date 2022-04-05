@@ -45,7 +45,7 @@ export default () => {
 
         <AdicionaCartao/>
 
-          <BotaoCustomizado onPress={NovoCartao}>
+          <BotaoCustomizado onPress={() => navigation.navigate('Cartoes')}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
         <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>

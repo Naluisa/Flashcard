@@ -52,11 +52,11 @@ export default () => {
                   activeOpacity={0.5}>
             <Texto2>Você tem certeza que deseja excluir esse cartão?</Texto2>
             
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}>
               <Texto3>SIM</Texto3>
             </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
+            <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}>
               <Texto4>CANCELAR</Texto4>
             </TouchableOpacity>
         </View>
