@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   AreaInput,
@@ -9,17 +9,14 @@ import {
   TextoNegritoMensagemBotao,
 } from '../NovaColecao/styles';
 
-import {Image, TouchableOpacity, StyleSheet,TextInput, Keyboard, Alert} from 'react-native';
+import { Image, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
 import styled from 'styled-components/native';
-import { collection, addDoc } from "firebase/firestore";
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { db } from "../../services/config";
-
 export default () => {
-  
+
   const navigation = useNavigation();
 
   const [email, setEmail] = useState('');
@@ -46,16 +43,16 @@ export default () => {
 
   const handleMessageButtonClick = () => {
     navigation.reset({
-      routes: [{name: 'Cadastro'}],
+      routes: [{ name: 'Cadastro' }],
     });
   };
 
-  cadastrar = async () =>{
-    try{
+  cadastrar = async () => {
+    try {
       await AsyncStorage.setItem()
-    }catch{}
+    } catch { }
   }
-  
+
   return (
     <Container>
       <AreaInput>
@@ -64,26 +61,26 @@ export default () => {
         </TextoNegritoMensagemBotao>
 
         <AreaInputLogin>
-            <Texto>Nome coleção</Texto>
-            <TextInput  
+          <Texto>Nome coleção</Texto>
+          <TextInput
             style={styles.input} placeholder="Objetos"
-            placeholderTextColor="#000000"/>
+            placeholderTextColor="#000000" />
         </AreaInputLogin>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Descrição</Texto2>
-            <TextInput multiline={true}  
+          activeOpacity={0.5}>
+          <Texto2>Descrição</Texto2>
+          <TextInput multiline={true}
             style={styles.input2} placeholder="Coleção contendo objetos relacionados à materiais esportivos"
-            placeholderTextColor="#000000"/>
+            placeholderTextColor="#000000" />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Imagem</Texto2>
-            <Image style={styles.imagem} source={require('../../assets/mais.png')} />
+          activeOpacity={0.5}>
+          <Texto2>Imagem</Texto2>
+          <Image style={styles.imagem} source={require('../../assets/mais.png')} />
         </TouchableOpacity>
-        
+
 
         <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
@@ -97,59 +94,56 @@ export default () => {
 };
 
 const styles = StyleSheet.create({
+  input: {
+    width: 270,
+    height: 60,
+    color: '#000000',
+    marginLeft: -90,
+    marginTop: 20,
+    fontSize: 16,
+  },
+
+  input2: {
+    width: 270,
+    height: 70,
+    color: '#000000',
+    marginLeft: -60,
+    marginTop: 2,
+    fontSize: 16,
+  },
+
+  imagem: {
+    marginLeft: 70,
+    marginRight: 'auto',
+  },
+
   buttonFacebookStyle: {
     backgroundColor: '#FFFFFF',
     marginBottom: 20,
     padding: 15,
     flexDirection: 'row',
   },
-  buttonFacebookStyle2: {
-    backgroundColor: '#FFFFFF',
-    marginBottom: 20,
-    padding: 15,
-    flexDirection: 'row',
-  },
-  imagem:{
-    marginLeft: 70,
-    marginRight: 'auto',
-  },
-  input: {
-    width: 270,
-height: 60,
-color: '#000000',
-marginLeft: -90,
-marginTop: 20,
-fontSize: 16,
-  },
-  input2: {
-    width: 270,
-height: 70,
-color: '#000000',
-marginLeft: -60,
-marginTop: 2,
-fontSize: 16,
-  },
+
 });
 
 const AreaInputLogin = styled.View`
-    width: 100%;
-    height: 60px;
-    background-color: #FFFFFF;
-    flex-direction: row;
-    padding-left: 15px;
-    align-items: center;
-    margin-bottom: 15px;
-    margin-top: 30px;
+  width: 100%;
+  height: 60px;
+  background-color: #FFFFFF;
+  flex-direction: row;
+  padding-left: 15px;
+  align-items: center;
+  margin-bottom: 15px;
+  margin-top: 30px;
 `;
 
 const Texto = styled.Text`
-font-size: 13px;
-color: #6200EE;
-margin-top: -25px;
+  font-size: 13px;
+  color: #6200EE;
+  margin-top: -25px;
 `;
 const Texto2 = styled.Text`
-font-size: 13px;
-color: #6200EE;
-margin-top: -5px;
+  font-size: 13px;
+  color: #6200EE;
+  margin-top: -5px;
 `;
-

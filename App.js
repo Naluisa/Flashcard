@@ -5,10 +5,10 @@ import UserContextProvider from './src/contexts/UserContext';
 import MainStack from './src/stacks/MainStack';
 
 export default () => {
-  return(
+  return (
     <UserContextProvider>
       <NavigationContainer>
-        <MainStack/>
+        <MainStack />
       </NavigationContainer>
     </UserContextProvider>
   )

@@ -34,7 +34,7 @@ export default () => {
         .then(credential => {
           const user = credential.user;
           if(user.senha == user.repeteSenha )
-          navigation.navigate('Colecoes');
+          navigation.navigate('Login');
         }) 
         .catch(erro => {
           setErroCadastro(true);

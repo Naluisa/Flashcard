@@ -35,18 +35,8 @@ export const TextoBotaoCustomizado = styled.Text`
   font-weight: bold;
 `;
 
-export const BotaoMensagemLogin = styled.TouchableOpacity`
-  flex-direction: row;
-  justify-content: center;
-  margin-top: 50px;
-  margin-bottom: 20px;
-`;
-export const TextoMensagemBotao = styled.Text`
-  font-size: 16px;
-  color: white;
-`;
 export const TextoNegritoMensagemBotao = styled.Text`
-  font-size: 14px;
+  font-size: 15px;
   color: white;
   margin-left: 5px;
   text-align: right;
@@ -68,4 +58,11 @@ export const Text = styled.Text`
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 60px;
+`;
+
+export const TextoSenha = styled.Text`
+font-size: 13px;
+  color: #FF5353;
+  margin-top: -10px;
+  margin-left: 15px;
 `;
