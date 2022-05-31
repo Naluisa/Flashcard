@@ -15,6 +15,9 @@ import styled from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+import { getDatabase, ref, set } from "firebase/database";
+
+
 export default () => {
 
   const navigation = useNavigation();
@@ -22,6 +25,7 @@ export default () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
+  
   const handleLoginClick = () => {
     if (email !== '' && senha !== '') {
       auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
@@ -40,6 +44,14 @@ export default () => {
       navigation.navigate('MainTab');
     }
   };
+
+  function cadastraColecao() {
+    firebase.firestore().collection("Colecao").add({
+      frente: frente,
+      verso: verso,
+    });
+    navigation.navigate("SucessoAmbiente");
+  }
 
   const handleMessageButtonClick = () => {
     navigation.reset({
@@ -82,7 +94,7 @@ export default () => {
         </TouchableOpacity>
 
 
-        <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
+        <BotaoCustomizado onPress={cadastraColecao}>
           <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
         </BotaoCustomizado>
         <BotaoCustomizado2 onPress={() => navigation.navigate('Colecoes')}>

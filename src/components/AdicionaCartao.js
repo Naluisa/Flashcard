@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    Image,
-    TouchableOpacity,
-    TextInput, 
-  } from 'react-native';
-  
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
+
+import db from '../../src/services/config';
+
 export const View = styled.View`
     margin-bottom: -50px;
 `;
@@ -21,29 +23,50 @@ margin-left: -25px;
 margin-Top: -35px;
 `;
 
-export default ({placeholder }) => {
-  return(
-<View>
-    <TouchableOpacity
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-      <TextoCartao>Frente</TextoCartao>
-      <TextInput style={styles.input}
-        placeholder="Brinquedo"
-        placeholderTextColor="#000000"
-      />
-    </TouchableOpacity>
-    <TouchableOpacity
-      style={styles.buttonFacebookStyle2}
-      activeOpacity={0.5}>
-      <TextoCartao>Verso</TextoCartao>
-      <TextInput
-        style={styles.input}
-        placeholder="Toy."
-            placeholderTextColor="#000000"
+export default () => {
+  const navigation = useNavigation();
+
+  const [frenteCartao, setFrenteCartao] = useState("");
+  const [versoCartao, setVersoCartao] = useState("");
+
+
+  const adicionarCartao = async () => {
+    // await db.collection("Cartao").
+    // navigation.navigate('Colecoes');
+
+  }
+
+  return (
+    <View>
+      <TouchableOpacity
+        style={styles.buttonFacebookStyle}
+        activeOpacity={0.5}>
+        <TextoCartao>Frente</TextoCartao>
+        <TextInput style={styles.input}
+          value={frenteCartao}
+          onChangeText={(value) => { setFrenteCartao(value) }}
         />
       </TouchableOpacity>
-</View>
+      <TouchableOpacity
+        style={styles.buttonFacebookStyle2}
+        activeOpacity={0.5}>
+        <TextoCartao>Verso</TextoCartao>
+        <TextInput
+          style={styles.input}
+          value={versoCartao}
+          onChangeText={setVersoCartao}
+        />
+      </TouchableOpacity>
+
+      <BotaoCustomizado onPress={adicionarCartao}>
+        <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
+      </BotaoCustomizado>
+      <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>
+        <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
+      </BotaoCustomizado2>
+
+
+    </View>
   )
 }
 const styles = StyleSheet.create({
@@ -76,7 +99,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 2,
     alignItems: 'center',
     color: 'black',
-    marginLeft: 25 ,
+    marginLeft: 25,
     fontSize: 25,
     fontWeight: 'bold',
     width: 170,
@@ -91,8 +114,32 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'left',
   },
-  Linha:{
+  Linha: {
     backgroundColor: 'red',
     width: 170,
   }
 });
+
+const BotaoCustomizado = styled.TouchableOpacity`
+    height: 46px;
+    background-color:#6A61A1;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    margin-bottom: 60px;
+`;
+
+const BotaoCustomizado2 = styled.TouchableOpacity`
+    height: 46px;
+    background-color:#00000000;
+    justify-content: center;
+    align-items: center;
+    border-color: white;
+    borderWidth:1;
+`;
+
+const TextoBotaoCustomizado = styled.Text`
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+`;

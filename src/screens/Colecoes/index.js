@@ -1,7 +1,7 @@
 import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Container, Scroller,ListArea} from './styles';
-import {dataMenu} from '../../mocks/dataMenu';
+import { useNavigation } from '@react-navigation/native';
+import { Container, Scroller, ListArea } from './styles';
+import { dataMenu } from '../../mocks/dataMenu';
 
 import {
   SafeAreaView,
@@ -23,7 +23,7 @@ export default () => {
       <Scroller>
         <ListArea>
 
-          <SafeAreaView style={{flex: 1}}>
+          <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
               {dataMenu.map((item) => (
 
@@ -31,17 +31,17 @@ export default () => {
               ))}
 
 
-  
 
-<TouchableOpacity
-                                activeOpacity={0.7}
-                                style={styles.touchableOpacityStyle}
-                                onPress={() => navigation.navigate('NovaColecao')}>
-                                <Image
-                                    source={require('../../assets/plus.png')}
-                                    style={styles.floatingButtonStyle}
-                                />
-                            </TouchableOpacity>
+
+              <TouchableOpacity
+                activeOpacity={0.7}
+                style={styles.touchableOpacityStyle}
+                onPress={() => navigation.navigate('NovaColecao')}>
+                <Image
+                  source={require('../../assets/plus.png')}
+                  style={styles.floatingButtonStyle}
+                />
+              </TouchableOpacity>
 
             </View>
           </SafeAreaView>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     width: 60,
     height: 60,
     borderRadius: 5,
-    marginLeft:15
+    marginLeft: 15
   },
   ImagemTexto: {
     marginRight: -5,

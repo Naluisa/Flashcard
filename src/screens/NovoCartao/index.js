@@ -7,17 +7,21 @@ import {
 
 import db from '../../services/config';
 import AdicionaCartao from '../../components/AdicionaCartao';
+import { getDatabase, ref, set } from "firebase/database";
+
 
 export default () => {
 
   const navigation = useNavigation();
 
-  const [frente, setFrente] = useState('');
-  const [verso, setVerso] = useState('');
+  const [text, setText] = useState({
+    frente: '',
+    verso: ''
+  });
 
   const NovoCartao = () => {
     if (frente !== '' && verso !== '') {
-      db.collection('Cartao').add({ frente: frente, verso: verso });
+      firebase.firestore().collection('Cartao').add({ frente: frente, verso: verso });
     } else {
       alert("Preencha os campos");
     }
@@ -34,13 +38,7 @@ export default () => {
 
           <AdicionaCartao />
 
-          <BotaoCustomizado onPress={() => navigation.navigate('Cartoes')}>
-            <TextoBotaoCustomizado>CADASTRAR</TextoBotaoCustomizado>
-          </BotaoCustomizado>
-          <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>
-            <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
-          </BotaoCustomizado2>
-
+          
         </ListArea>
       </Scroller>
     </Container>
