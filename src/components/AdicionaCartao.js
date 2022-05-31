@@ -30,6 +30,7 @@ export default () => {
   const [versoCartao, setVersoCartao] = useState("");
 
 
+
   const adicionarCartao = async () => {
     // await db.collection("Cartao").
     // navigation.navigate('Colecoes');

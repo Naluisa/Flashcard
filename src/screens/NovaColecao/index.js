@@ -89,7 +89,7 @@ export default () => {
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
-          <Texto2>Imagem</Texto2>
+          <Texto2>Imagemm</Texto2>
           <Image style={styles.imagem} source={require('../../assets/mais.png')} />
         </TouchableOpacity>
 
