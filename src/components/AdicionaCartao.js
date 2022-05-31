@@ -10,8 +10,7 @@ import {
   TextInput,
 } from 'react-native';
 
-import db from '../../src/services/config';
-
+import { db } from '../services/config';
 export const View = styled.View`
     margin-bottom: -50px;
 `;
@@ -26,14 +25,20 @@ margin-Top: -35px;
 export default () => {
   const navigation = useNavigation();
 
-  const [frenteCartao, setFrenteCartao] = useState("");
-  const [versoCartao, setVersoCartao] = useState("");
+  const [frente, setFrente] = useState("");
+  const [verso, setVerso] = useState("");
 
 
 
-  const adicionarCartao = async () => {
+  function adicionarCartao() {
     // await db.collection("Cartao").
     // navigation.navigate('Colecoes');
+    if (frente !== '' && verso !== '') {
+      db.collection('Cartao').add({ frente: frente, verso: verso });
+      console.log(frente, verso);
+  } else {
+      alert("Preencha os campos");
+  }
 
   }
 
@@ -44,8 +49,8 @@ export default () => {
         activeOpacity={0.5}>
         <TextoCartao>Frente</TextoCartao>
         <TextInput style={styles.input}
-          value={frenteCartao}
-          onChangeText={(value) => { setFrenteCartao(value) }}
+          value={frente}
+          onChangeText={(value) =>  setFrente(value) }
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -54,8 +59,8 @@ export default () => {
         <TextoCartao>Verso</TextoCartao>
         <TextInput
           style={styles.input}
-          value={versoCartao}
-          onChangeText={setVersoCartao}
+          value={verso}
+          onChangeText={(value) =>  setVerso(value) }
         />
       </TouchableOpacity>
 
