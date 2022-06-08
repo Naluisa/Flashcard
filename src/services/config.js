@@ -1,10 +1,6 @@
-// Import the functions you need from the SDKs you need
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-import 'firebase/compat/firestore';
-import { getFirestore } from "firebase/firestore";
-import { getDatabase, ref, set } from "firebase/database";
-
+import {initializeApp} from 'firebase/app';
+import { initializeFirestore } from "firebase/firestore";
+import { getAuth } from 'firebase/auth'; 
 
 
 // TODO: Add SDKs for Firebase products that you want to use
@@ -12,25 +8,22 @@ import { getDatabase, ref, set } from "firebase/database";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyClr84q8imocMB7LJ4iuO9FO_CGqlmQKQM",
-  authDomain: "flashcard-7b03e.firebaseapp.com",
-  projectId: "flashcard-7b03e",
-  storageBucket: "flashcard-7b03e.appspot.com",
-  messagingSenderId: "552130816974",
-  appId: "1:552130816974:web:e075b49d0ca9213e65d99f"
+  apiKey: "AIzaSyBxXcnFYS7IEcYLC6n6gfMiCRA2-wVXV-M",
+  authDomain: "flashcards-1a172.firebaseapp.com",
+  projectId: "flashcards-1a172",
+  storageBucket: "flashcards-1a172.appspot.com",
+  messagingSenderId: "975622106993",
+  appId: "1:975622106993:web:92ee821364346d6d6450d0",
+  measurementId: "G-R83KFJSW34"
 };
 
 
 
 // Initialize Firebase
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+const firebaseApp =  initializeApp(firebaseConfig);
+           
+const db= initializeFirestore(firebaseApp, {experimentalForceLongPolling: true})
+const auth = getAuth();
 
-const db = firebaseApp.firestore();
-const auth = firebase.auth();
-const database = getDatabase();
-
-
-
-
-export { auth, db, database };
+export {auth, db};
 

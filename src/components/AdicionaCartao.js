@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { db } from '../services/config';
+import { addDoc, collection } from 'firebase/firestore';
 export const View = styled.View`
     margin-bottom: -50px;
 `;
@@ -30,16 +31,21 @@ export default () => {
 
 
 
-  function adicionarCartao() {
-    // await db.collection("Cartao").
-    // navigation.navigate('Colecoes');
-    if (frente !== '' && verso !== '') {
-      db.collection('Cartao').add({ frente: frente, verso: verso });
-      console.log(frente, verso);
-  } else {
-      alert("Preencha os campos");
-  }
+  async function adicionarCartao() {
+    if (frente !== "" && verso !== "") {
+      
+      //forma de salvar dado com firebase 9
+      console.log('inicio de funcão do firebase')
+      const card = await addDoc(collection(db, "Cartao"), {
+        frente: "teste",
+        verso: "teste",
+      });
+     console.log('fim de funcão do firebase')
 
+      console.log(card);
+    } else {
+      alert("Preencha os campos");
+    }
   }
 
   return (
