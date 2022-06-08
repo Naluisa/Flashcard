@@ -1,52 +1,60 @@
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {TextoVerso,TextoFrente,TextoTituloFrente, TextoTituloVerso} from './styles';
+import React, { useEffect, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { TextoVerso, TextoFrente, TextoTituloFrente, TextoTituloVerso } from './styles';
 import {
   StyleSheet,
   Image,
-  TouchableOpacity,button,TextInput, View
+  TouchableOpacity, button, TextInput, View
 } from 'react-native';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../../services/config';
 
 const props = {
   textoFrente: "",
   textoVerso: "",
 }
 
-export default ({textoFrente, textoVerso}) => {
+export default ({ textoFrente, textoVerso }) => {
   const navigation = useNavigation();
+  
+
+  
 
   return (
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-            <View >
-              <TextoTituloFrente >Frente</TextoTituloFrente>
-              <TextoTituloVerso >Verso</TextoTituloVerso>
-            </View>
-          <View style={styles.itens}>
-            <TextoFrente>{textoFrente}</TextoFrente>
-            <TextoVerso>{textoVerso}</TextoVerso>
-          </View>
-          <TouchableOpacity style={styles.icones1} onPress={() => navigation.navigate('EditarCartao')}>
-            <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit} />
-          </TouchableOpacity>  
-          <TouchableOpacity style={styles.icones2} onPress={() => navigation.navigate('ExcluirCartao')}>
-            <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
-          </TouchableOpacity>
-        </TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('MainTab')}
+      style={styles.buttonFacebookStyle}
+      activeOpacity={0.5}>
+      <View >
+        <TextoTituloFrente >Frente</TextoTituloFrente>
+        <TextoTituloVerso >Verso</TextoTituloVerso>
+      </View>
+
+      <View style={styles.itens}>
+        <TextoFrente>{textoFrente}</TextoFrente>
+        <TextoVerso>{textoVerso}</TextoVerso>
+      </View>
+
+
+      <TouchableOpacity style={styles.icones1} onPress={() => navigation.navigate('EditarCartao')}>
+        <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit} />
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.icones2} onPress={() => navigation.navigate('ExcluirCartao')}>
+        <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
+      </TouchableOpacity>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   itens: {
-   marginLeft:34, 
+    marginLeft: 34,
   },
-  icones1:{
-    marginLeft:65,  
+  icones1: {
+    marginLeft: 65,
   },
-  icones2:{
-} ,
+  icones2: {
+  },
   container: {
     flex: 1,
     backgroundColor: '#332E56',
@@ -91,20 +99,20 @@ const styles = StyleSheet.create({
     width: 1,
     height: 50,
   },
-  TextoCartao:{
+  TextoCartao: {
     textAlign: 'left',
-color: 'rgb(119, 119, 119)',
-fontSize: 18,
-marginLeft: '-25px',
-marginTop: '-35px',
+    color: 'rgb(119, 119, 119)',
+    fontSize: 18,
+    marginLeft: '-25px',
+    marginTop: '-35px',
 
   },
-  TextoCartao2:{
+  TextoCartao2: {
     textAlign: 'left',
-color: 'rgb(119, 119, 119)',
-fontSize: 18,
-marginLeft: '-25px',
-marginTop: '-35px',
+    color: 'rgb(119, 119, 119)',
+    fontSize: 18,
+    marginLeft: '-25px',
+    marginTop: '-35px',
 
   },
   buttonEdit: {
@@ -127,42 +135,42 @@ marginTop: '-35px',
     marginTop: 12,
     resizeMode: 'stretch',
   },
-  BotaoCustomizado2:{
-  height: '46px',
-backgroundColor:'#6A61A1',
+  BotaoCustomizado2: {
+    height: '46px',
+    backgroundColor: '#6A61A1',
     justifyContent: 'center',
     alignItems: 'center',
-  marginTop: '50px',
-  marginBottom: '150px',
-},
-input: {
-  width: 320,
-  height: 60,
-  color: '#000000',
-  marginLeft: -40,
-  marginTop: -10,
-  fontSize: 14,
-},
-botoes: {
-  display: 'inline', 
-},
-touchableOpacityStyle: {
-  position: 'absolute',
-  width: 50,
-  height: 50,
-  alignItems: 'center',
-  justifyContent: 'center',
-  right: 30,
-  bottom: 30,
-},
-floatingButtonStyle: {
-  resizeMode: 'contain',
-  width: 70,
-  height: 70,
-  backgroundColor: '#7A71AF'
-},
-ImagemTexto: {
-  marginRight: -5,
-},
+    marginTop: '50px',
+    marginBottom: '150px',
+  },
+  input: {
+    width: 320,
+    height: 60,
+    color: '#000000',
+    marginLeft: -40,
+    marginTop: -10,
+    fontSize: 14,
+  },
+  botoes: {
+    display: 'inline',
+  },
+  touchableOpacityStyle: {
+    position: 'absolute',
+    width: 50,
+    height: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    right: 30,
+    bottom: 30,
+  },
+  floatingButtonStyle: {
+    resizeMode: 'contain',
+    width: 70,
+    height: 70,
+    backgroundColor: '#7A71AF'
+  },
+  ImagemTexto: {
+    marginRight: -5,
+  },
 });
 

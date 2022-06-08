@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 
 import { db } from '../services/config';
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, getDocs } from 'firebase/firestore';
 export const View = styled.View`
     margin-bottom: -50px;
 `;
@@ -30,17 +30,16 @@ export default () => {
   const [verso, setVerso] = useState("");
 
 
-
   async function adicionarCartao() {
     if (frente !== "" && verso !== "") {
-      
+
       //forma de salvar dado com firebase 9
       console.log('inicio de funcão do firebase')
       const card = await addDoc(collection(db, "Cartao"), {
-        frente: "teste",
-        verso: "teste",
+        frente,
+        verso
       });
-     console.log('fim de funcão do firebase')
+      console.log('fim de funcão do firebase')
 
       console.log(card);
     } else {
@@ -56,7 +55,7 @@ export default () => {
         <TextoCartao>Frente</TextoCartao>
         <TextInput style={styles.input}
           value={frente}
-          onChangeText={(value) =>  setFrente(value) }
+          onChangeText={(value) => setFrente(value)}
         />
       </TouchableOpacity>
       <TouchableOpacity
@@ -66,7 +65,7 @@ export default () => {
         <TextInput
           style={styles.input}
           value={verso}
-          onChangeText={(value) =>  setVerso(value) }
+          onChangeText={(value) => setVerso(value)}
         />
       </TouchableOpacity>
 

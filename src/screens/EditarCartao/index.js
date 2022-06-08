@@ -10,13 +10,7 @@ import {Container, Scroller, HeaderArea, HeaderTitle, ListArea,TextoNegritoMensa
     TouchableOpacity,
     TextInput, 
   } from 'react-native';
-
-import MenuItem from '../../components/Colecoes/MenuItem';
-import Cartao from '../../components/Cartao';
-
-import IconeOlho from '../../assets/eye.svg';
-import { black } from 'react-native-paper/lib/typescript/styles/colors';
-import { block } from 'react-native-reanimated';
+  
 export default () => {
   const navigation = useNavigation();
   return (
