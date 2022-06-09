@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { Container, Scroller, ListArea } from './styles';
 import { dataMenu } from '../../mocks/dataMenu';
@@ -12,11 +12,25 @@ import {
 } from 'react-native';
 
 import MenuItem from '../../components/Colecoes/MenuItem';
+import { db } from '../../services/config';
+import { collection, getDocs } from 'firebase/firestore';
 
 export default () => {
   const [visible, setVisible] = React.useState(true);
 
   const navigation = useNavigation();
+
+  const [colecoes, setColecoes] = useState([]);
+
+  const colecoesCollectionRef = collection(db, "Colecao");
+
+  useEffect(() => {
+    const getColecoes = async () => {
+      const data = await getDocs(colecoesCollectionRef);
+      setColecoes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getColecoes();
+  }, []);
 
   return (
     <Container>
@@ -25,13 +39,10 @@ export default () => {
 
           <SafeAreaView style={{ flex: 1 }}>
             <View style={styles.container}>
-              {dataMenu.map((item) => (
+              {colecoes.map((item) => (
 
-                <MenuItem nome={item.name} image={item.imagem} />
+                <MenuItem nome={item.nome} image={item.imagem} />
               ))}
-
-
-
 
               <TouchableOpacity
                 activeOpacity={0.7}
