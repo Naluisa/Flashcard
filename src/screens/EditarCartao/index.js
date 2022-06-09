@@ -1,58 +1,80 @@
-import React from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Container, Scroller, HeaderArea, HeaderTitle, ListArea,TextoNegritoMensagemBotao,BotaoCustomizado,
-  TextoBotaoCustomizado,BotaoCustomizado2,TextoCartao, View,} from './styles';
-  import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    Image,
-    TouchableOpacity,
-    TextInput, 
-  } from 'react-native';
-  
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import {
+  Container, Scroller, ListArea, TextoNegritoMensagemBotao, BotaoCustomizado,
+  TextoBotaoCustomizado, BotaoCustomizado2, TextoCartao, View,
+} from './styles';
+import {
+  StyleSheet,
+  TouchableOpacity,
+  TextInput,
+  FlatList
+} from 'react-native';
+import { db } from '../../services/config';
+import { updateDoc } from 'firebase/firestore';
+
 export default () => {
   const navigation = useNavigation();
+  const [cartoes, setCartoes] = useState([]);
+
+  const alteraCartao = (id) => {
+    const cartaoRef = doc(db, "Cartao", id);
+
+    updateDoc(cartaoRef, {
+      frente: 'teste',
+      verso: 'teste'
+    })
+  }
+
+  const itemCartoes = ({cartao}) => {
+    return (
+      <>
+        
+      </>
+    );
+  }
+
   return (
     <Container>
       <Scroller>
         <ListArea>
 
-        <TextoNegritoMensagemBotao>
-          Preencha os dados da frente e do verso do flashcard
-        </TextoNegritoMensagemBotao>
+          <TextoNegritoMensagemBotao>
+            Preencha os dados da frente e do verso do flashcard
+          </TextoNegritoMensagemBotao>
 
-<View>
-    <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextoCartao>Frente</TextoCartao>
-          <TextInput style={styles.input}
-                  placeholder="Brinquedos"
-                  placeholderTextColor="#000000"
-          />
-    </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle2}
-          activeOpacity={0.5}>
-          <TextoCartao>Verso</TextoCartao>
-          <TextInput
-                  style={styles.input}
-                  placeholder="Toys"
-            placeholderTextColor="#000000"
-                  />
-        </TouchableOpacity>
-        </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MainTab')}
+              style={styles.buttonFacebookStyle}
+              activeOpacity={0.5}>
+              <TextoCartao>Frente</TextoCartao>
+              <TextInput style={styles.input}
+                placeholder="Brinquedos"
+                placeholderTextColor="#000000"
+              />
+            </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MainTab')}
+              style={styles.buttonFacebookStyle2}
+              activeOpacity={0.5}>
+              <TextoCartao>Verso</TextoCartao>
+              <TextInput
+                style={styles.input}
+                placeholder="Toys"
+                placeholderTextColor="#000000"
+              />
+            </TouchableOpacity>
+          </View>
 
-          <BotaoCustomizado onPress={() => navigation.navigate('Cartoes')}>
+        <FlatList data={cartoes} renderItem={itemCartoes} keyExtractor={cartao => cartao.id}></FlatList>
+
+        <BotaoCustomizado onPress={() => {alteraCartao(cartao.id)}}>
           <TextoBotaoCustomizado>SALVAR ALTERAÇÕES</TextoBotaoCustomizado>
         </BotaoCustomizado>
         <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>
           <TextoBotaoCustomizado>CANCELAR</TextoBotaoCustomizado>
         </BotaoCustomizado2>
-
         </ListArea>
       </Scroller>
     </Container>
@@ -104,7 +126,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'left',
   },
-  Linha:{
+  Linha: {
     backgroundColor: 'red',
     width: 170,
   }

@@ -1,24 +1,29 @@
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   Container,
   AreaInput,
 } from '../NovaColecao/styles';
 
-import {TouchableOpacity, StyleSheet, View} from 'react-native';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 
 import styled from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {auth} from '../../services/config';
+import { auth, db } from '../../services/config';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 export default () => {
-  
+
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [cartoes, setCartoes] = useState([]);
+
+  async function deleteCartao(id) {
+    const cartaoDoc = doc(db, "Cartao", id);
+    await deleteDoc(cartaoDoc);
+  }
 
   const handleLoginClick = () => {
     if (email !== '' && senha !== '') {
@@ -41,7 +46,7 @@ export default () => {
 
   const handleMessageButtonClick = () => {
     navigation.reset({
-      routes: [{name: 'Cadastro'}],
+      routes: [{ name: 'Cadastro' }],
     });
   };
 
@@ -49,16 +54,16 @@ export default () => {
     <Container>
       <AreaInput>
         <View style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Você tem certeza que deseja excluir esse cartão?</Texto2>
-            
-            <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}>
-              <Texto3>SIM</Texto3>
-            </TouchableOpacity>
+          activeOpacity={0.5}>
+          <Texto2>Você tem certeza que deseja excluir esse cartão?</Texto2>
+          
+          <TouchableOpacity onPress={deleteCartao}>
+            <Texto3>SIM</Texto3>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}>
+            <Texto4>CANCELAR</Texto4>
+          </TouchableOpacity>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}>
-              <Texto4>CANCELAR</Texto4>
-            </TouchableOpacity>
         </View>
       </AreaInput>
     </Container>

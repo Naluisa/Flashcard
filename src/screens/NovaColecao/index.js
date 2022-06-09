@@ -15,55 +15,43 @@ import styled from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import { getDatabase, ref, set } from "firebase/database";
+
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { db } from '../../services/config';
+import { addDoc, collection } from 'firebase/firestore';
 
 
 export default () => {
 
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [nome, setNome] = useState('');
+  const [descricao, setDescricao] = useState('');
+  const [imagem, setImagem] = useState('');
 
-  
-  const handleLoginClick = () => {
-    if (email !== '' && senha !== '') {
-      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
-        console.log('userCredential', userCredential);
-        AsyncStorage.setItem('email', email);
-        AsyncStorage.setItem(
-          '@SalvaLogin',
-          JSON.stringify(userCredential),
-        ).then(() => {
-          const user = userCredential.user;
-          console.log(user);
-          navigation.navigate('MainTab');
-        });
+  const storage = getStorage();
+  const storageRef = ref(storage, 'assets');
+
+  async function cadastraColecao() {
+    if (nome !== "" && descricao !== "") {
+
+      //forma de salvar dado com firebase 9
+      console.log('inicio de funcão do firebase')
+      const card = await addDoc(collection(db, "Colecao"), {
+        nome,
+        descricao
       });
+      console.log('fim de funcão do firebase')
+
+      console.log(card);
     } else {
-      navigation.navigate('MainTab');
+      alert("Preencha os campos");
     }
-  };
-
-  function cadastraColecao() {
-    firebase.firestore().collection("Colecao").add({
-      frente: frente,
-      verso: verso,
-    });
-    navigation.navigate("SucessoAmbiente");
   }
 
-  const handleMessageButtonClick = () => {
-    navigation.reset({
-      routes: [{ name: 'Cadastro' }],
-    });
-  };
-
-  cadastrar = async () => {
-    try {
-      await AsyncStorage.setItem()
-    } catch { }
-  }
+  uploadBytes(storageRef).then((snapshot) => {
+    console.log('Uploaded a blob or file!');
+  });
 
   return (
     <Container>
@@ -75,16 +63,18 @@ export default () => {
         <AreaInputLogin>
           <Texto>Nome coleção</Texto>
           <TextInput
-            style={styles.input} placeholder="Objetos"
-            placeholderTextColor="#000000" />
+            style={styles.input} 
+            value={nome}
+            onChangeText={(value) => setNome(value)}/>
         </AreaInputLogin>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
           <Texto2>Descrição</Texto2>
           <TextInput multiline={true}
-            style={styles.input2} placeholder="Coleção contendo objetos relacionados à materiais esportivos"
-            placeholderTextColor="#000000" />
+            style={styles.input2} 
+            value={descricao}
+            onChangeText={(value) => setDescricao(value)}/>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}

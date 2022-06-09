@@ -18,8 +18,6 @@ export default ({ textoFrente, textoVerso }) => {
   const navigation = useNavigation();
   
 
-  
-
   return (
     <TouchableOpacity
       onPress={() => navigation.navigate('MainTab')}

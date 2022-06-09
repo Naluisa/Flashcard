@@ -12,10 +12,10 @@ import {
   SafeAreaView,
   StyleSheet,
   Image,
-  TouchableOpacity, button, TextInput
+  TouchableOpacity, TextInput
 } from 'react-native';
 import { db } from '../../services/config';
-import { collection, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, getDocs } from 'firebase/firestore';
 
 export default () => {
 
@@ -31,6 +31,11 @@ export default () => {
     };
     getCartoes();
   }, []);
+
+  async function deleteCartao(id) {
+    const cartaoDoc = doc(db, "Cartao", id);
+    await deleteDoc(cartaoDoc);
+  }
 
   return (
     <Container>
