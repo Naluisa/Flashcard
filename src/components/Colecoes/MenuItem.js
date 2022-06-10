@@ -16,15 +16,8 @@ import {
 export default ({nome, image}) => {
   const navigation = useNavigation();
 
-  const handleMessageButtonClick = () => {
-    navigation.navigate('EditarColecao');
-  }
-  const BotaoAdiciona = () => {
-    navigation.navigate('EditarColecao');
-  }
-
   return (
-      <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}
+      <TouchableOpacity onPress={() => navigation.navigate('Cartoes',{colecao: nome})}
           style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
 

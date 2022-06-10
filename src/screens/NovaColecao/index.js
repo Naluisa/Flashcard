@@ -9,16 +9,16 @@ import {
   TextoNegritoMensagemBotao,
 } from '../NovaColecao/styles';
 
-import { Image, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
+import { Image, TouchableOpacity, StyleSheet, TextInput, View, Button, } from 'react-native';
 
 import styled from 'styled-components/native';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-
 import { getStorage, ref, uploadBytes } from 'firebase/storage';
 import { db } from '../../services/config';
 import { addDoc, collection } from 'firebase/firestore';
+import ImagePicker from 'react-native-image-picker';
 
 
 export default () => {
@@ -32,6 +32,9 @@ export default () => {
   const storage = getStorage();
   const storageRef = ref(storage, 'assets');
 
+  const [selectedImage, setSelectedImage] = useState();
+
+
   async function cadastraColecao() {
     if (nome !== "" && descricao !== "") {
 
@@ -39,7 +42,8 @@ export default () => {
       console.log('inicio de funcão do firebase')
       const card = await addDoc(collection(db, "Colecao"), {
         nome,
-        descricao
+        descricao,
+        imagem
       });
       console.log('fim de funcão do firebase')
 
@@ -48,6 +52,8 @@ export default () => {
       alert("Preencha os campos");
     }
   }
+
+
 
   uploadBytes(storageRef).then((snapshot) => {
     console.log('Uploaded a blob or file!');
@@ -63,25 +69,32 @@ export default () => {
         <AreaInputLogin>
           <Texto>Nome coleção</Texto>
           <TextInput
-            style={styles.input} 
+            style={styles.input}
             value={nome}
-            onChangeText={(value) => setNome(value)}/>
+            onChangeText={(value) => setNome(value)} />
         </AreaInputLogin>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
           <Texto2>Descrição</Texto2>
           <TextInput multiline={true}
-            style={styles.input2} 
+            style={styles.input2}
             value={descricao}
-            onChangeText={(value) => setDescricao(value)}/>
+            onChangeText={(value) => setDescricao(value)} />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
           activeOpacity={0.5}>
           <Texto2>Imagem</Texto2>
-          <Image style={styles.imagem} source={require('../../assets/mais.png')} />
+          <Image type="file" style={styles.imagem} source={require('../../assets/mais.png')} />
         </TouchableOpacity>
+
+        <View style={styles.imageContainer}>
+          <Image source={selectedImage} style={styles.previewImage} />
+        </View>
+        <View styels={styles.button}>
+          <Button source={require('../../assets/mais.png')} onPress={this.pickImageHandler} />
+        </View>
 
 
         <BotaoCustomizado onPress={cadastraColecao}>

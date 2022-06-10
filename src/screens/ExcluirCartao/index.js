@@ -25,31 +25,6 @@ export default () => {
     await deleteDoc(cartaoDoc);
   }
 
-  const handleLoginClick = () => {
-    if (email !== '' && senha !== '') {
-      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
-        console.log('userCredential', userCredential);
-        AsyncStorage.setItem('email', email);
-        AsyncStorage.setItem(
-          '@SalvaLogin',
-          JSON.stringify(userCredential),
-        ).then(() => {
-          const user = userCredential.user;
-          console.log(user);
-          navigation.navigate('MainTab');
-        });
-      });
-    } else {
-      navigation.navigate('MainTab');
-    }
-  };
-
-  const handleMessageButtonClick = () => {
-    navigation.reset({
-      routes: [{ name: 'Cadastro' }],
-    });
-  };
-
   return (
     <Container>
       <AreaInput>

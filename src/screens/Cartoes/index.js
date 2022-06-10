@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Container,
   Scroller,
@@ -12,25 +12,30 @@ import {
   SafeAreaView,
   StyleSheet,
   Image,
-  TouchableOpacity, TextInput
+  TouchableOpacity, TextInput,Text
 } from 'react-native';
 import { db } from '../../services/config';
-import { collection, deleteDoc, getDocs } from 'firebase/firestore';
+import { collection, deleteDoc, getDocs, query, where } from 'firebase/firestore';
 
 export default () => {
 
   const navigation = useNavigation();
+  const route = useRoute();
   const [cartoes, setCartoes] = useState([]);
 
   const cartoesCollectionRef = collection(db, "Cartao");
 
+  const {colecao} = route.params;
+
+  const getCartoes = async (colecao) => {
+    const q = query(cartoesCollectionRef, where("colecao","==", colecao));
+    const data = await getDocs(q);
+    setCartoes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
+
   useEffect(() => {
-    const getCartoes = async () => {
-      const data = await getDocs(cartoesCollectionRef);
-      setCartoes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-    getCartoes();
-  }, []);
+    getCartoes(colecao);
+  }, [colecao]);
 
   async function deleteCartao(id) {
     const cartaoDoc = doc(db, "Cartao", id);
@@ -65,7 +70,7 @@ export default () => {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.touchableOpacityStyle}
-                onPress={() => navigation.navigate('NovoCartao')}>
+                onPress={() => navigation.navigate('NovoCartao',{colecao})}>
                 <Image
                   source={require('../../assets/plus.png')}
                   style={styles.floatingButtonStyle}

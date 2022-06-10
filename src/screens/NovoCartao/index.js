@@ -12,21 +12,6 @@ import { getDatabase, ref, set } from "firebase/database";
 
 export default () => {
 
-  const navigation = useNavigation();
-
-  const [text, setText] = useState({
-    frente: '',
-    verso: ''
-  });
-
-  const NovoCartao = () => {
-    if (frente !== '' && verso !== '') {
-      firebase.firestore().collection('Cartao').add({ frente: frente, verso: verso });
-    } else {
-      alert("Preencha os campos");
-    }
-  }
-
   return (
     <Container>
       <Scroller>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import {
   SafeAreaView,
@@ -25,9 +25,12 @@ margin-Top: -35px;
 
 export default () => {
   const navigation = useNavigation();
+  const route = useRoute();
 
   const [frente, setFrente] = useState("");
   const [verso, setVerso] = useState("");
+
+  const {colecao} = route.params;
 
 
   async function adicionarCartao() {
@@ -37,7 +40,8 @@ export default () => {
       console.log('inicio de funcão do firebase')
       const card = await addDoc(collection(db, "Cartao"), {
         frente,
-        verso
+        verso,
+        colecao
       });
       console.log('fim de funcão do firebase')
 

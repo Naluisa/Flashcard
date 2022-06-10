@@ -14,10 +14,7 @@ import {Image, TouchableOpacity, StyleSheet,TextInput, Keyboard, Alert} from 're
 import styled from 'styled-components/native';
 import { collection, addDoc } from "firebase/firestore";
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
 import { db } from "../../services/config";
-import { height } from '@mui/system';
 
 export default () => {
   
@@ -26,36 +23,6 @@ export default () => {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  const handleLoginClick = () => {
-    if (email !== '' && senha !== '') {
-      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
-        console.log('userCredential', userCredential);
-        AsyncStorage.setItem('email', email);
-        AsyncStorage.setItem(
-          '@SalvaLogin',
-          JSON.stringify(userCredential),
-        ).then(() => {
-          const user = userCredential.user;
-          console.log(user);
-          navigation.navigate('MainTab');
-        });
-      });
-    } else {
-      navigation.navigate('MainTab');
-    }
-  };
-
-  const handleMessageButtonClick = () => {
-    navigation.reset({
-      routes: [{name: 'Cadastro'}],
-    });
-  };
-
-  cadastrar = async () =>{
-    try{
-      await AsyncStorage.setItem()
-    }catch{}
-  }
   
   return (
     <Container>
