@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Container, Scroller, ListArea, TextoNegritoMensagemBotao, BotaoCustomizado,
   TextoBotaoCustomizado, BotaoCustomizado2, TextoCartao, View,
@@ -11,28 +11,33 @@ import {
   FlatList
 } from 'react-native';
 import { db } from '../../services/config';
-import { updateDoc } from 'firebase/firestore';
+import { doc, updateDoc } from 'firebase/firestore';
+import { TextoFrente } from '../../components/Cartoes/styles';
+import { TextoVerso } from '../../components/Colecoes/styles';
 
 export default () => {
   const navigation = useNavigation();
   const [cartoes, setCartoes] = useState([]);
+  const [Frente, setFrente] = useState('');
+  const [Verso, setVerso] = useState('');
+  const route = useRoute();
 
-  const alteraCartao = (id) => {
+  const {colecao, id, textoFrente, textoVerso} = route.params;
+
+  const alteraCartao = () => {
     const cartaoRef = doc(db, "Cartao", id);
 
     updateDoc(cartaoRef, {
-      frente: 'teste',
-      verso: 'teste'
+      frente: Frente,
+      verso: Verso,
+      colecao: colecao
     })
   }
 
-  const itemCartoes = ({cartao}) => {
-    return (
-      <>
-        
-      </>
-    );
-  }
+  useEffect(() => {
+    setFrente(textoFrente);
+    setVerso(textoVerso);
+  }, []);
 
   return (
     <Container>
@@ -50,8 +55,8 @@ export default () => {
               activeOpacity={0.5}>
               <TextoCartao>Frente</TextoCartao>
               <TextInput style={styles.input}
-                placeholder="Brinquedos"
-                placeholderTextColor="#000000"
+              value={Frente}
+              onChangeText={(value) => setFrente(value)}
               />
             </TouchableOpacity>
             <TouchableOpacity
@@ -61,15 +66,14 @@ export default () => {
               <TextoCartao>Verso</TextoCartao>
               <TextInput
                 style={styles.input}
-                placeholder="Toys"
-                placeholderTextColor="#000000"
+                value={Verso}
+                onChangeText={(value) => setVerso(value)}
               />
             </TouchableOpacity>
           </View>
 
-        <FlatList data={cartoes} renderItem={itemCartoes} keyExtractor={cartao => cartao.id}></FlatList>
-
-        <BotaoCustomizado onPress={() => {alteraCartao(cartao.id)}}>
+        
+        <BotaoCustomizado onPress={() => {alteraCartao()}}>
           <TextoBotaoCustomizado>SALVAR ALTERAÇÕES</TextoBotaoCustomizado>
         </BotaoCustomizado>
         <BotaoCustomizado2 onPress={() => navigation.navigate('Cartoes')}>

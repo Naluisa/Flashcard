@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import {
   Container,
@@ -21,7 +21,7 @@ import { addDoc, collection } from 'firebase/firestore';
 import ImagePicker from 'react-native-image-picker';
 
 
-export default () => {
+export default ({ image, onImagePicked }) => {
 
   const navigation = useNavigation();
 
@@ -33,7 +33,6 @@ export default () => {
   const storageRef = ref(storage, 'assets');
 
   const [selectedImage, setSelectedImage] = useState();
-
 
   async function cadastraColecao() {
     if (nome !== "" && descricao !== "") {
@@ -52,8 +51,25 @@ export default () => {
       alert("Preencha os campos");
     }
   }
-
-
+  useEffect(() => {
+    if (image) {
+      console.log("useEffect: " + image);
+      setSelectedImage({ uri: image });
+    }
+  }, [image])
+  pickImageHandler = () => {
+    ImagePicker.showImagePicker({ title: 'Pick an Image', maxWidth: 800, maxHeight: 600 },
+      response => {
+        if (response.error) {
+          console.log("image error");
+        } else {
+          console.log("Image: " + response.uri)
+          setSelectedImage({ uri: response.uri });
+          onImagePicked({ uri: response.uri });
+        }
+      }
+    )
+  }
 
   uploadBytes(storageRef).then((snapshot) => {
     console.log('Uploaded a blob or file!');
@@ -93,7 +109,7 @@ export default () => {
           <Image source={selectedImage} style={styles.previewImage} />
         </View>
         <View styels={styles.button}>
-          <Button source={require('../../assets/mais.png')} onPress={this.pickImageHandler} />
+          <Button title="+" onPress={this.pickImageHandler} />
         </View>
 
 

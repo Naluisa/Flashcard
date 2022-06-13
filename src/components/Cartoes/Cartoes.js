@@ -14,7 +14,7 @@ const props = {
   textoVerso: "",
 }
 
-export default ({ textoFrente, textoVerso }) => {
+export default ({ textoFrente, textoVerso, idCartao, colecao }) => {
   const navigation = useNavigation();
   
 
@@ -34,10 +34,10 @@ export default ({ textoFrente, textoVerso }) => {
       </View>
 
 
-      <TouchableOpacity style={styles.icones1} onPress={() => navigation.navigate('EditarCartao')}>
+      <TouchableOpacity style={styles.icones1} onPress={() => navigation.navigate('EditarCartao', {id: idCartao, colecao: colecao, textoFrente: textoFrente, textoVerso:textoVerso})}>
         <Image class="edit" source={require('../../assets/edit.png')} style={styles.buttonEdit} />
       </TouchableOpacity>
-      <TouchableOpacity style={styles.icones2} onPress={() => navigation.navigate('ExcluirCartao')}>
+      <TouchableOpacity style={styles.icones2} onPress={() => navigation.navigate('ExcluirCartao', {id: idCartao, colecao: colecao})}>
         <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.buttonExclui} />
       </TouchableOpacity>
     </TouchableOpacity>

@@ -12,7 +12,7 @@ import {
   SafeAreaView,
   StyleSheet,
   Image,
-  TouchableOpacity, TextInput,Text
+  TouchableOpacity, TextInput
 } from 'react-native';
 import { db } from '../../services/config';
 import { collection, deleteDoc, getDocs, query, where } from 'firebase/firestore';
@@ -22,10 +22,11 @@ export default () => {
   const navigation = useNavigation();
   const route = useRoute();
   const [cartoes, setCartoes] = useState([]);
+  const [filtraCartao, setFiltraCartao] = useState('');
 
   const cartoesCollectionRef = collection(db, "Cartao");
 
-  const {colecao} = route.params;
+  const {colecao, recarrega} = route.params;
 
   const getCartoes = async (colecao) => {
     const q = query(cartoesCollectionRef, where("colecao","==", colecao));
@@ -35,12 +36,17 @@ export default () => {
 
   useEffect(() => {
     getCartoes(colecao);
-  }, [colecao]);
+  }, [colecao, recarrega]);
 
-  async function deleteCartao(id) {
-    const cartaoDoc = doc(db, "Cartao", id);
-    await deleteDoc(cartaoDoc);
-  }
+  const buscaCartao = async (t) => {
+    setFiltraCartao(t)
+    const q = query(cartoesCollectionRef, where("frente","==", t), where("colecao","==", colecao));
+    const data = await getDocs(q);
+    const q2 = query(cartoesCollectionRef, where("verso","==", t), where("colecao","==", colecao));
+    const data2 = await getDocs(q2);
+    const dataFinal = data.docs.concat(data2.docs);
+    setCartoes(dataFinal.map((doc) => ({ ...doc.data(), id: doc.id })));
+  };
 
   return (
     <Container>
@@ -52,7 +58,9 @@ export default () => {
               <TouchableOpacity style={styles.buttonFiltro}
                 activeOpacity={0.5}>
                 <TextoFiltro >Filtro</TextoFiltro>
-                <TextInput style={styles.input} />
+                <TextInput style={styles.input}
+                value={filtraCartao}
+                onChangeText={(t) => { buscaCartao(t)}}/>
               </TouchableOpacity>
 
               <BotaoCustomizado2 onPress={() => navigation.navigate('Jogar')}>
@@ -62,7 +70,7 @@ export default () => {
               {cartoes.map((cartao) => {
                 return (
                   <>
-                    <Cartoes textoFrente={cartao.frente} textoVerso={cartao.verso} />
+                    <Cartoes textoFrente={cartao.frente} textoVerso={cartao.verso} idCartao={cartao.id} colecao={colecao}/>
                   </>
                 );
               })}

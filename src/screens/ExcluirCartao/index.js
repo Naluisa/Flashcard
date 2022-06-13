@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Container,
   AreaInput,
@@ -19,10 +19,32 @@ export default () => {
   const navigation = useNavigation();
 
   const [cartoes, setCartoes] = useState([]);
+  const route = useRoute();
+
+  const {id, colecao} = route.params;
+
+  /* async function adicionarCartao() {
+    if (frente !== "" && verso !== "") {
+
+      //forma de salvar dado com firebase 9
+      console.log('inicio de funcão do firebase')
+      const card = await addDoc(collection(db, "Cartao"), {
+        frente,
+        verso,
+        colecao
+      });
+      console.log('fim de funcão do firebase')
+
+      console.log(card);
+    } else {
+      alert("Preencha os campos");
+    }
+  } */
 
   async function deleteCartao(id) {
     const cartaoDoc = doc(db, "Cartao", id);
     await deleteDoc(cartaoDoc);
+    navigation.navigate('Cartoes',{colecao:colecao, recarrega:true})
   }
 
   return (
@@ -32,10 +54,10 @@ export default () => {
           activeOpacity={0.5}>
           <Texto2>Você tem certeza que deseja excluir esse cartão?</Texto2>
           
-          <TouchableOpacity onPress={deleteCartao}>
+          <TouchableOpacity onPress={() => deleteCartao(id)}>
             <Texto3>SIM</Texto3>
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => navigation.navigate('Cartoes')}>
+          <TouchableOpacity onPress={() => navigation.navigate('Cartoes', {colecao:colecao})}>
             <Texto4>CANCELAR</Texto4>
           </TouchableOpacity>
 
