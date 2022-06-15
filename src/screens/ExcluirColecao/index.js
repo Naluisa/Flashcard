@@ -1,64 +1,43 @@
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Container,
   AreaInput,
 } from '../NovaColecao/styles';
 
-import {TouchableOpacity, StyleSheet, View} from 'react-native';
+import { TouchableOpacity, StyleSheet, View } from 'react-native';
 
 import styled from 'styled-components/native';
-
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import {auth} from '../../services/config';
+import { deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../../services/config';
 
 export default () => {
-  
+
   const navigation = useNavigation();
+  const route = useRoute();
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const { id } = route.params;
 
-  const handleLoginClick = () => {
-    if (email !== '' && senha !== '') {
-      auth.signInWithEmailAndPassword(email, senha).then(userCredential => {
-        console.log('userCredential', userCredential);
-        AsyncStorage.setItem('email', email);
-        AsyncStorage.setItem(
-          '@SalvaLogin',
-          JSON.stringify(userCredential),
-        ).then(() => {
-          const user = userCredential.user;
-          console.log(user);
-          navigation.navigate('MainTab');
-        });
-      });
-    } else {
-      navigation.navigate('MainTab');
-    }
-  };
-
-  const handleMessageButtonClick = () => {
-    navigation.reset({
-      routes: [{name: 'Cadastro'}],
-    });
-  };
+  async function deleteColecao(id) {
+    const colecaoDoc = doc(db, "Colecao", id);
+    await deleteDoc(colecaoDoc);
+    navigation.navigate('Colecoes', { recarrega: true })
+  }
 
   return (
     <Container>
       <AreaInput>
         <View style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Você tem certeza que deseja excluir essa coleção?</Texto2>
-            
-            <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
-              <Texto3>SIM</Texto3>
-            </TouchableOpacity>
+          activeOpacity={0.5}>
+          <Texto2>Você tem certeza que deseja excluir essa coleção?</Texto2>
 
-            <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
-              <Texto4>CANCELAR</Texto4>
-            </TouchableOpacity>
+          <TouchableOpacity onPress={() => deleteColecao(id)}>
+            <Texto3>SIM</Texto3>
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => navigation.navigate('Colecoes')}>
+            <Texto4>CANCELAR</Texto4>
+          </TouchableOpacity>
         </View>
       </AreaInput>
     </Container>

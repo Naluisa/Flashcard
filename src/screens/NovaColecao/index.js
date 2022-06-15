@@ -9,19 +9,19 @@ import {
   TextoNegritoMensagemBotao,
 } from '../NovaColecao/styles';
 
-import { Image, TouchableOpacity, StyleSheet, TextInput, View, Button, } from 'react-native';
+import { Image, TouchableOpacity, StyleSheet, TextInput } from 'react-native';
 
 import styled from 'styled-components/native';
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getStorage, ref, getDownloadURL, uploadBytesResumable } from 'firebase/storage';
 import { db } from '../../services/config';
-import { addDoc, collection } from 'firebase/firestore';
-import ImagePicker from 'react-native-image-picker';
+import { addDoc, collection, snapshotEqual } from 'firebase/firestore';
+import * as ImagePicker from "react-native-image-picker"
+import storage from 'react-native-async-storage';
 
 
-export default ({ image, onImagePicked }) => {
+
+export default () => {
 
   const navigation = useNavigation();
 
@@ -29,10 +29,11 @@ export default ({ image, onImagePicked }) => {
   const [descricao, setDescricao] = useState('');
   const [imagem, setImagem] = useState('');
 
-  const storage = getStorage();
-  const storageRef = ref(storage, 'assets');
+  const [imagemColecao, setImagemColecao] = useState();
 
   const [selectedImage, setSelectedImage] = useState();
+  const [imgURL, setImgURL] = useState('');
+  const [progress, setProgress] = useState(0);
 
   async function cadastraColecao() {
     if (nome !== "" && descricao !== "") {
@@ -42,7 +43,6 @@ export default ({ image, onImagePicked }) => {
       const card = await addDoc(collection(db, "Colecao"), {
         nome,
         descricao,
-        imagem
       });
       console.log('fim de funcão do firebase')
 
@@ -51,29 +51,47 @@ export default ({ image, onImagePicked }) => {
       alert("Preencha os campos");
     }
   }
-  useEffect(() => {
-    if (image) {
-      console.log("useEffect: " + image);
-      setSelectedImage({ uri: image });
+
+  //ImagePicker
+  function imagePickerCallback(data) {
+    if (data.didCancel) {
+      return;
     }
-  }, [image])
-  pickImageHandler = () => {
-    ImagePicker.showImagePicker({ title: 'Pick an Image', maxWidth: 800, maxHeight: 600 },
-      response => {
-        if (response.error) {
-          console.log("image error");
-        } else {
-          console.log("Image: " + response.uri)
-          setSelectedImage({ uri: response.uri });
-          onImagePicked({ uri: response.uri });
-        }
+    if (data.error) {
+      return;
+    }
+    if (!data.uri) {
+      return;
+    }
+    setImagemColecao(data);
+  }
+
+  //Salvar Imagem firebase
+  const salvarImagem = (event) => {
+    event.preventDefault()
+
+    const file = event.target[0]?.files[0]
+    if (!file) return;
+
+    const storageRef = ref(storage, `imagens/${file.name}`)
+    const uploadTask = uploadBytesResumable(storageRef, file)
+
+    uploadTask.on(
+      "state_changed",
+      snapshot => {
+        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+        setProgress(progress)
+      },
+      error => {
+        alert(error)
+      },
+      () => {
+        getDownloadURL(uploadTask.snapshot.ref).then(url => {
+          setImgURL(url)
+        })
       }
     )
   }
-
-  uploadBytes(storageRef).then((snapshot) => {
-    console.log('Uploaded a blob or file!');
-  });
 
   return (
     <Container>
@@ -100,17 +118,22 @@ export default ({ image, onImagePicked }) => {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
+          onPress={() => ImagePicker.launchImageLibrary({}, imagePickerCallback)}
           activeOpacity={0.5}>
           <Texto2>Imagem</Texto2>
-          <Image type="file" style={styles.imagem} source={require('../../assets/mais.png')} />
+          <Image type="file" style={styles.imagem}
+            source={
+              require('../../assets/mais.png')
+            } />
+          {/* {!imgURL && <progress value={progress} max="100" />}
+            {!imgURL && <img src={imgURL} alt="Imagem" />} */}
         </TouchableOpacity>
 
-        <View style={styles.imageContainer}>
-          <Image source={selectedImage} style={styles.previewImage} />
-        </View>
-        <View styels={styles.button}>
-          <Button title="+" onPress={this.pickImageHandler} />
-        </View>
+
+
+        {/* <BotaoUp title="+" >
+          <TextoBotaoCustomizadoColor>+</TextoBotaoCustomizadoColor>
+        </BotaoUp> */}
 
 
         <BotaoCustomizado onPress={cadastraColecao}>
@@ -142,7 +165,13 @@ const styles = StyleSheet.create({
     marginTop: 2,
     fontSize: 16,
   },
+  button: {
+    backgroundColor: '#FFFFFF',
+    marginBottom: 20,
+    padding: 15,
+    flexDirection: 'row',
 
+  },
   imagem: {
     marginLeft: 70,
     marginRight: 'auto',
@@ -178,3 +207,15 @@ const Texto2 = styled.Text`
   color: #6200EE;
   margin-top: -5px;
 `;
+const BotaoUp = styled.TouchableOpacity`
+height: 116px;
+width: 100%;
+background-color:#FFFFFF;
+    justify-content: center;
+    align-items: center;
+  margin-top: -10px;
+  margin-Bottom: 20;
+  padding: 15px;
+    
+`;
+

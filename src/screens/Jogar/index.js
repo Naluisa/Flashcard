@@ -1,63 +1,54 @@
 import React, { useState } from 'react';
-import {useNavigation} from '@react-navigation/native';
-import {Container, Scroller, HeaderArea, HeaderTitle, ListArea,TextoNegritoMensagemBotao,BotaoCustomizado,
-  TextoBotaoCustomizado,BotaoCustomizado2,TextoCartao, View,} from './styles';
-  import {
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    Image,
-    TouchableOpacity,
-    TextInput, 
-  } from 'react-native';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import {
+  Container, Scroller, ListArea, TextoNegritoMensagemBotao, BotaoCustomizado,
+  TextoBotaoCustomizado, View,
+} from './styles';
+import {
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
 
-import MenuItem from '../../components/Colecoes/MenuItem';
-import Cartao from '../../components/Cartao';
 import db from '../../services/config';
-import IconeOlho from '../../assets/eye.svg';
-import { black } from 'react-native-paper/lib/typescript/styles/colors';
-import { block } from 'react-native-reanimated';
 export default () => {
 
   const navigation = useNavigation();
+  const [Frente, setFrente] = useState('');
 
-  const [frente, setFrente] = useState('');
-  const [verso, setVerso] = useState('');
+  const route = useRoute();
 
-  const NovoCartao = () => {
-    if (frente !== '' && verso !== '') {
-        db.collection('Cartao').add({ frente: frente, verso: verso});
-    } else {
-        alert("Preencha os campos");
-    }
-}
+  const { textoFrente, textoVerso} = route.params;
+
+  useEffect(() => {
+    setFrente(textoFrente);
+  }, []);
 
   return (
     <Container>
       <Scroller>
         <ListArea>
 
-        <TextoNegritoMensagemBotao>
-          Cartão 1/8
-        </TextoNegritoMensagemBotao>
+          <TextoNegritoMensagemBotao>
+            Cartão 1/8
+          </TextoNegritoMensagemBotao>
 
-<View>
-    <TouchableOpacity
-          onPress={() => navigation.navigate('MainTab')}
-          style={styles.buttonFacebookStyle}
-          activeOpacity={0.5}>
-          <TextInput style={styles.input}
-                  value={frente}
-                  onChangeText={t => setFrente(t)}
-                  placeholder="Brinquedo"
-                  placeholderTextColor="#000000"
-          />
-    </TouchableOpacity>
-        </View>
+          <View>
+            <TouchableOpacity
+              onPress={() => navigation.navigate('MainTab')}
+              style={styles.buttonFacebookStyle}
+              activeOpacity={0.5}>
+              <TextInput style={styles.input}
+                value={Frente}
+                onChangeText={(value) => setFrente(value)}
+              />
+            </TouchableOpacity>
+          </View>
 
           <BotaoCustomizado onPress={() => navigation.navigate('Jogar2')}>
-          <TextoBotaoCustomizado>VIRAR</TextoBotaoCustomizado>
-        </BotaoCustomizado>
+            <TextoBotaoCustomizado>VIRAR</TextoBotaoCustomizado>
+          </BotaoCustomizado>
         </ListArea>
       </Scroller>
     </Container>
@@ -72,7 +63,7 @@ const styles = StyleSheet.create({
   buttonFacebookStyle: {
     backgroundColor: '#FFFFFF',
     marginBottom: 30,
-    padding:50,
+    padding: 50,
     paddingTop: 50,
     flexDirection: 'row',
     borderRadius: 10,
@@ -112,7 +103,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'left',
   },
-  Linha:{
+  Linha: {
     backgroundColor: 'red',
     width: 170,
   }

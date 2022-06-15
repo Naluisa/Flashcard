@@ -19,7 +19,7 @@ const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
   return (
-    <Drawer.Navigator initialRouteName="Colecoes" screenOptions={{
+    <Drawer.Navigator initialRouteName="NovaColecao" screenOptions={{
       drawerStyle: {
         backgroundColor: '#25213E',
       },

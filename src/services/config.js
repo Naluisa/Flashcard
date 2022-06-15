@@ -25,7 +25,7 @@ const firebaseApp =  initializeApp(firebaseConfig);
            
 const db= initializeFirestore(firebaseApp, {experimentalForceLongPolling: true})
 const auth = getAuth();
-const storage = getStorage();
+const storage = getStorage(firebaseApp);
 
 export {auth, db, storage};
 

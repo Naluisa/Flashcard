@@ -63,7 +63,7 @@ export default () => {
                 onChangeText={(t) => { buscaCartao(t)}}/>
               </TouchableOpacity>
 
-              <BotaoCustomizado2 onPress={() => navigation.navigate('Jogar')}>
+              <BotaoCustomizado2 onPress={() => navigation.navigate('Jogar',)}>
                 <TextoBotaoCustomizado>Jogar!</TextoBotaoCustomizado>
               </BotaoCustomizado2>
 

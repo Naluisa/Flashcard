@@ -49,6 +49,7 @@ export default () => {
     } else {
       alert("Preencha os campos");
     }
+    navigation.navigate('Cartoes',{colecao:colecao, recarrega:true})
   }
 
   return (

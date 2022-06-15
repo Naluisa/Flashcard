@@ -17,7 +17,7 @@ background-color:#6A61A1;
     justify-content: center;
     align-items: center;
   margin-top: -10px;
-
+  margin-bottom: -100px;
 `;
 
 export const BotaoCustomizado2 = styled.TouchableOpacity`
@@ -27,7 +27,13 @@ export const BotaoCustomizado2 = styled.TouchableOpacity`
     align-items: center;
     border-color: white;
     borderWidth:1;
-margin-top: 100px;
+margin-top: 130px;
+margin-bottom: 40px;
+`;
+export const TextoBotaoCustomizadoColor = styled.Text`
+font-size: 65px;
+color: #000000;
+font-weight: bold;
 `;
 
 export const TextoBotaoCustomizado = styled.Text`

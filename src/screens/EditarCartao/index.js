@@ -8,7 +8,6 @@ import {
   StyleSheet,
   TouchableOpacity,
   TextInput,
-  FlatList
 } from 'react-native';
 import { db } from '../../services/config';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -32,6 +31,7 @@ export default () => {
       verso: Verso,
       colecao: colecao
     })
+    navigation.navigate('Cartoes',{colecao:colecao, recarrega:true})
   }
 
   useEffect(() => {

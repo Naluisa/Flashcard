@@ -41,7 +41,7 @@ export default () => {
             <View style={styles.container}>
               {colecoes.map((item) => (
 
-                <MenuItem nome={item.nome} image={item.imagem} />
+                <MenuItem nome={item.nome} descricao={item.descricao} idColecao={item.id} />
               ))}
 
               <TouchableOpacity
@@ -110,10 +110,11 @@ const styles = StyleSheet.create({
   },
   floatingButtonStyle: {
     resizeMode: 'contain',
-    width: 60,
-    height: 60,
-    borderRadius: 5,
-    marginLeft: 15
+    width: 55,
+    height: 55,
+    borderRadius: 3,
+    marginLeft: 55,
+    marginTop: 85
   },
   ImagemTexto: {
     marginRight: -5,

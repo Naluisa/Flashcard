@@ -13,7 +13,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 
-export default ({nome, image}) => {
+export default ({nome, image, idColecao,descricao}) => {
   const navigation = useNavigation();
 
   return (
@@ -23,7 +23,6 @@ export default ({nome, image}) => {
 
         <View style={styles.titulo}>
            <Image
-                source={image}
                 style={styles.buttonImageIconStyle}
             />
    
@@ -32,11 +31,11 @@ export default ({nome, image}) => {
         </View>
 
         <View style={styles.botoes}>
-          <TouchableOpacity onPress={() => navigation.navigate('EditarColecao')}>
+          <TouchableOpacity onPress={() => navigation.navigate('EditarColecao', {id: idColecao, nome: nome, descricao: descricao})}>
             <Image class="edit" source={require('../../assets/edit.png')} style={styles.editIcon}/>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => navigation.navigate('ExcluirColecao')}>
+          <TouchableOpacity onPress={() => navigation.navigate('ExcluirColecao', {id: idColecao})}>
             <Image class="exclui" source={require('../../assets/excluir.png')} style={styles.editIcon}/>
           </TouchableOpacity>
         </View>

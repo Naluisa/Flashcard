@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {useNavigation} from '@react-navigation/native';
+import React, { useEffect, useState } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Container,
   AreaInput,
@@ -9,21 +9,38 @@ import {
   TextoNegritoMensagemBotao,
 } from '../NovaColecao/styles';
 
-import {Image, TouchableOpacity, StyleSheet,TextInput, Keyboard, Alert} from 'react-native';
+import { Image, TouchableOpacity, StyleSheet, TextInput, Keyboard, Alert } from 'react-native';
 
 import styled from 'styled-components/native';
-import { collection, addDoc } from "firebase/firestore";
+import {doc, updateDoc } from "firebase/firestore";
 
 import { db } from "../../services/config";
 
 export default () => {
-  
+
   const navigation = useNavigation();
 
-  const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [Nome, setNome] = useState('');
+  const [Descricao, setDescricao] = useState('');
+  const route = useRoute();
 
-  
+  const { nome, image, id, descricao } = route.params;
+
+  const alteraColecao = () => {
+    const colecaoRef = doc(db, "Colecao", id);
+
+    updateDoc(colecaoRef, {
+      nome: Nome,
+      descricao: Descricao
+    })
+  }
+
+  useEffect(() => {
+    setNome(nome);
+    setDescricao(descricao);
+  }, []);
+
+
   return (
     <Container>
       <AreaInput>
@@ -32,28 +49,30 @@ export default () => {
         </TextoNegritoMensagemBotao>
 
         <AreaInputLogin>
-            <Texto>Nome coleção</Texto>
-            <TextInput  
-            style={styles.input} placeholder="Materiais esportivos"
-            placeholderTextColor="#000000"/>
+          <Texto>Nome coleção</Texto>
+          <TextInput
+            style={styles.input}
+            value={Nome}
+            onChangeText={(value) => setNome(value)} />
         </AreaInputLogin>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Descrição</Texto2>
-            <TextInput multiline={true}
-            style={styles.input2} placeholder="Coleção contendo objetos relacionados à materiais esportivos"
-            placeholderTextColor="#000000"/>
+          activeOpacity={0.5}>
+          <Texto2>Descrição</Texto2>
+          <TextInput multiline={true}
+            style={styles.input2}
+            value={Descricao}
+            onChangeText={(value) => setDescricao(value)} />
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.buttonFacebookStyle}
-                  activeOpacity={0.5}>
-            <Texto2>Imagem</Texto2>
-            <Image style={styles.imagem} source={require('../../assets/bola.png')} />
+          activeOpacity={0.5}>
+          <Texto2>Imagem</Texto2>
+          <Image style={styles.imagem} source={require('../../assets/mais.png')} />
         </TouchableOpacity>
-        
 
-        <BotaoCustomizado onPress={() => navigation.navigate('Colecoes')}>
+
+        <BotaoCustomizado onPress={() => { alteraColecao() }}>
           <TextoBotaoCustomizado>SALVAR ALTERAÇÕES</TextoBotaoCustomizado>
         </BotaoCustomizado>
         <BotaoCustomizado2 onPress={() => navigation.navigate('Colecoes')}>
@@ -77,28 +96,25 @@ const styles = StyleSheet.create({
     padding: 15,
     flexDirection: 'row',
   },
-  imagem:{
-    marginLeft: 50,
-    marginTop: 20,
+  imagem: {
+    marginLeft: 70,
     marginRight: 'auto',
-    width: 90,
-    height:90
   },
   input: {
     width: 270,
-height: 60,
-color: '#000000',
-marginLeft: -90,
-marginTop: 20,
-fontSize: 15,
+    height: 60,
+    color: '#000000',
+    marginLeft: -90,
+    marginTop: 20,
+    fontSize: 15,
   },
   input2: {
     width: 270,
-height: 70,
-color: '#000000',
-marginLeft: -60,
-marginTop: 2,
-fontSize: 15,
+    height: 70,
+    color: '#000000',
+    marginLeft: -60,
+    marginTop: 2,
+    fontSize: 15,
 
   },
 });

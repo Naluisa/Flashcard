@@ -108,10 +108,10 @@ export const TextoVerso = styled.Text`
   color: #27ACA7;
     font-weight: bold;
     font-size: 22;
-    margin-top: -33px;
+    margin-top: -30px;
     margin-left: -63px;
     margin-right: -63px;
-padding-right:30px;
+    padding-right:30px;
 `;
 export const TextoNegritoMensagemBotao = styled.Text`
   font-size: 19px;
