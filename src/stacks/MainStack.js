@@ -8,7 +8,7 @@ const Stack = createStackNavigator();
 
 export default () => (
   <Stack.Navigator
-    //initialRouteName="Login"
+    initialRouteName="Login"
     screenOptions={{
       headerShown: false,
     }}

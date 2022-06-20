@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import {
   Container, Scroller, ListArea, TextoNegritoMensagemBotao, BotaoCustomizado,
@@ -12,18 +12,40 @@ import {
 } from 'react-native';
 
 import db from '../../services/config';
+import { collection } from 'firebase/firestore';
 export default () => {
 
   const navigation = useNavigation();
   const [Frente, setFrente] = useState('');
+  const [cartoes, setCartoes] = useState([]);
+  const [pegaFrente, setPegaFrente] = useState([]);
 
+  const cartoesCollectionRef = collection(db, "Cartoes");
   const route = useRoute();
+  const [index, setIndex] = useState(0);
 
-  const { textoFrente, textoVerso} = route.params;
+  const { textoFrente, textoVerso, frente} = route.params;
 
   useEffect(() => {
-    setFrente(textoFrente);
-  }, []);
+    setCartoes(frente)
+  }, [])
+
+
+  
+ /*  useEffect(() => {
+    const getCartoes = async () => {
+      const data = await getDocs(cartoesCollectionRef);
+      setCartoes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+    getCartoes();
+  }, []); */
+
+/*   const pegaFrenteCartao = async (value) => {
+    setPegaFrente(value)
+    const q = query(cartoesCollectionRef, where("frente", "==", value), where("colecao", "==", colecao));
+    const data = await getDocs(q);
+    setCartoes(data.map((doc) => ({ ...doc.data(), id: doc.id })));
+  }; */
 
   return (
     <Container>
@@ -40,8 +62,7 @@ export default () => {
               style={styles.buttonFacebookStyle}
               activeOpacity={0.5}>
               <TextInput style={styles.input}
-                value={Frente}
-                onChangeText={(value) => setFrente(value)}
+                {...frente}
               />
             </TouchableOpacity>
           </View>

@@ -24,7 +24,8 @@
     "firebase": "9.8.2",
     "firebase-tools": "^10.5.0",
     "i": "^0.3.7",
-    "npm": "^8.5.5",
+    "install": "^0.13.0",
+    "npm": "^8.12.2",
     "react": "17.0.2",
     "react-native": "0.67.4",
     "react-native-async-storage": "^0.0.1",
@@ -35,6 +36,10 @@
     "react-native-screens": "^3.13.1",
     "react-native-vector-icons": "^9.1.0",
     "react-navigation": "^4.4.4",
+    "react-redux": "^8.0.2",
+    "react-redux-firebase": "^3.11.0",
+    "redux": "^4.2.0",
+    "redux-firestore": "^1.0.0",
     "styled-components": "^5.3.5"
   },
   "devDependencies": {

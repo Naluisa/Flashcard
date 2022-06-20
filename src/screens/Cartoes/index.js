@@ -26,11 +26,14 @@ export default () => {
 
   const cartoesCollectionRef = collection(db, "Cartao");
 
-  const {colecao, recarrega} = route.params;
+  const { colecao, recarrega, frente } = route.params;
+
+  const [arrayCartao, setArrayCartao] = useState([]);
 
   const getCartoes = async (colecao) => {
-    const q = query(cartoesCollectionRef, where("colecao","==", colecao));
+    const q = query(cartoesCollectionRef, where("colecao", "==", colecao));
     const data = await getDocs(q);
+    setArrayCartao(data.docs.map((doc) => ({ ...doc.data(), id: doc.id  }))) ;
     setCartoes(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
@@ -40,12 +43,10 @@ export default () => {
 
   const buscaCartao = async (t) => {
     setFiltraCartao(t)
-    const q = query(cartoesCollectionRef, where("frente","==", t), where("colecao","==", colecao));
-    const data = await getDocs(q);
-    const q2 = query(cartoesCollectionRef, where("verso","==", t), where("colecao","==", colecao));
-    const data2 = await getDocs(q2);
-    const dataFinal = data.docs.concat(data2.docs);
-    setCartoes(dataFinal.map((doc) => ({ ...doc.data(), id: doc.id })));
+    const dataFinal = arrayCartao.filter(cartao => {
+      return cartao.frente.includes(t) || cartao.verso.includes(t);
+    });
+    setCartoes(dataFinal.map((doc) => ({ ...doc, id: doc.id })));
   };
 
   return (
@@ -59,18 +60,18 @@ export default () => {
                 activeOpacity={0.5}>
                 <TextoFiltro >Filtro</TextoFiltro>
                 <TextInput style={styles.input}
-                value={filtraCartao}
-                onChangeText={(t) => { buscaCartao(t)}}/>
+                  value={filtraCartao}
+                  onChangeText={(t) => { buscaCartao(t) }} />
               </TouchableOpacity>
 
-              <BotaoCustomizado2 onPress={() => navigation.navigate('Jogar',)}>
+              <BotaoCustomizado2 onPress={() => navigation.navigate('Jogar', { colecao: colecao, frente: frente })}>
                 <TextoBotaoCustomizado>Jogar!</TextoBotaoCustomizado>
               </BotaoCustomizado2>
 
               {cartoes.map((cartao) => {
                 return (
                   <>
-                    <Cartoes textoFrente={cartao.frente} textoVerso={cartao.verso} idCartao={cartao.id} colecao={colecao}/>
+                    <Cartoes textoFrente={cartao.frente} textoVerso={cartao.verso} idCartao={cartao.id} colecao={colecao} />
                   </>
                 );
               })}
@@ -78,7 +79,7 @@ export default () => {
               <TouchableOpacity
                 activeOpacity={0.7}
                 style={styles.touchableOpacityStyle}
-                onPress={() => navigation.navigate('NovoCartao',{colecao})}>
+                onPress={() => navigation.navigate('NovoCartao', { colecao })}>
                 <Image
                   source={require('../../assets/plus.png')}
                   style={styles.floatingButtonStyle}
